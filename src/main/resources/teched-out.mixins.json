@@ -3,7 +3,6 @@
 	"package": "z3roco01.techedout.mixin",
 	"compatibilityLevel": "JAVA_17",
 	"mixins": [
-		"ExampleMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
