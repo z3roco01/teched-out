@@ -5,6 +5,7 @@ import net.minecraft.util.Identifier
 import org.slf4j.LoggerFactory
 import z3roco01.techedout.block.TechedOutBlocks
 import z3roco01.techedout.block.entity.TechedOutBlockEntities
+import z3roco01.techedout.screen.TechedOutScreenHandlers
 
 object TechedOut : ModInitializer {
     val modid = "teched_out"
@@ -15,6 +16,7 @@ object TechedOut : ModInitializer {
 
         TechedOutBlocks.init()
         TechedOutBlockEntities.init()
+        TechedOutScreenHandlers.init()
 
         logger.info("init finished !!")
 	}
