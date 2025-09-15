@@ -13,8 +13,12 @@ import net.minecraft.world.World
 import z3roco01.techedout.block.entity.BatteryBlockEntity
 import z3roco01.techedout.block.entity.EnergyStorageBlockEntity
 
-class BatteryBlock() : BlockWithEntity(Settings.create()) {
-    override fun createBlockEntity(pos: BlockPos, state: BlockState) = BatteryBlockEntity(pos, state, )
+/**
+ * A class to make simple battery blocks
+ * @param tier the [Tier] of the battery, used to determine the battery's specs
+ */
+class BatteryBlock(private val tier: Tier) : BlockWithEntity(Settings.create()) {
+    override fun createBlockEntity(pos: BlockPos, state: BlockState) = BatteryBlockEntity(tier, pos, state)
 
     // needed since by default BlockWithEntity makes it invisible
     override fun getRenderType(state: BlockState) = BlockRenderType.MODEL

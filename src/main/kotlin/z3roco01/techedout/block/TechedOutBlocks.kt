@@ -12,7 +12,9 @@ import z3roco01.techedout.TechedOut
  */
 object TechedOutBlocks {
     // register all the blocks
-    val tempBattery = register(BatteryBlock(), "battery", true)
+    val LOW_BATTERY    = register(BatteryBlock(Tier.LOW), "low_battery", true)
+    val MIDDLE_BATTERY = register(BatteryBlock(Tier.MIDDLE), "middle_battery", true)
+    val HIGH_BATTERY   = register(BatteryBlock(Tier.HIGH), "high_battery", true)
 
     /**
      * Dummy function to ensure everything is loaded in time
