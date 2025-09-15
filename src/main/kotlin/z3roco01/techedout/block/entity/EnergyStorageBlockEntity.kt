@@ -7,6 +7,7 @@ import net.minecraft.nbt.NbtCompound
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
 import team.reborn.energy.api.base.SimpleSidedEnergyContainer
+import z3roco01.techedout.TechedOut
 
 /**
  * Outlines what is needed to implement an energy storage in a block entity
@@ -16,6 +17,18 @@ import team.reborn.energy.api.base.SimpleSidedEnergyContainer
  */
 abstract class EnergyStorageBlockEntity(type: BlockEntityType<*>, pos: BlockPos, state: BlockState):
     BlockEntity(type, pos, state) {
+
+    /**
+     * Holds a map from the directions to that sides permissions
+     */
+    val ioPermMap = mutableMapOf(
+        Direction.UP    to IOPermission.INS_EXT,
+        Direction.DOWN  to IOPermission.INS_EXT,
+        Direction.EAST  to IOPermission.INS_EXT,
+        Direction.WEST  to IOPermission.INS_EXT,
+        Direction.NORTH to IOPermission.INS_EXT,
+        Direction.SOUTH to IOPermission.INS_EXT
+    )
 
     /**
      * Handles energy storage with the TechReborn Energy API
@@ -29,11 +42,37 @@ abstract class EnergyStorageBlockEntity(type: BlockEntityType<*>, pos: BlockPos,
         override fun getCapacity(): Long = getEnergyCapacity()
 
         override fun getMaxInsert(dir: Direction?): Long {
-            return getMaxInsert()
+            // only return the insert value if this side can insert
+            if(canInsert(dir))
+                return getMaxInsert()
+            return 0
         }
 
         override fun getMaxExtract(dir: Direction?): Long {
-            return getMaxExtract()
+            // only return the extract value if this side is allowed to extract
+            if(canExtract(dir))
+                return getMaxInsert()
+            return 0
+        }
+
+        /**
+         * Returns if the passed side can be inserted into
+         */
+        fun canInsert(dir: Direction?): Boolean {
+            // if there is no direction, then dont allow it
+            if(dir == null) return false
+            // else get the permissions from the map and return canInsert
+            return ioPermMap[dir]!!.canInsert
+        }
+
+        /**
+         * Returns if the passed side can be extracted from
+         */
+        fun canExtract(dir: Direction?): Boolean {
+            // if there is no direction, then dont allow it
+            if(dir == null) return false
+            // else get the permissions from the map and return canExtract
+            return ioPermMap[dir]!!.canExtract
         }
     }
 
@@ -66,5 +105,17 @@ abstract class EnergyStorageBlockEntity(type: BlockEntityType<*>, pos: BlockPos,
         super.readNbt(nbt)
         // get the long from the nbt and set it
         energyStorage.amount = nbt.getLong(ENERGY_NBT_KEY)
+    }
+
+    /**
+     * An enum to denote what permissions are on a side
+     * @param canInsert true when this permission allows for insertion
+     * @param canExtract true when this permissions allows for extraction
+     */
+    enum class IOPermission(val canInsert: Boolean, val canExtract: Boolean) {
+        NONE(false, false),
+        INSERT(true, false),
+        EXTRACT(false, true),
+        INS_EXT(true, true)
     }
 }
