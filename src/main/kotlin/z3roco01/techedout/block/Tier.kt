@@ -6,5 +6,7 @@ package z3roco01.techedout.block
 enum class Tier {
     LOW,
     MIDDLE,
-    HIGH
+    HIGH,
+    VERY_HIGH,
+    ULTRA,
 }

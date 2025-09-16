@@ -21,22 +21,31 @@ class BatteryBlockEntity(private val tier: Tier, pos: BlockPos, state: BlockStat
     // constructor for registration
     constructor(pos: BlockPos, state: BlockState): this(Tier.LOW, pos, state)
 
+    // 1 plank ~= 750
+    // 1 coal ~= 4000
+
     override fun getEnergyCapacity() = when(tier) {
-        Tier.LOW -> 64000L // 16 coal
-        Tier.MIDDLE -> 512000L // 128 coal
-        Tier.HIGH -> 1024000L // 256 coal
+        Tier.LOW       -> 32000L // 8 coal
+        Tier.MIDDLE    -> 64000L // 16 coal
+        Tier.HIGH      -> 256000L // 64 coal
+        Tier.VERY_HIGH -> 1024000L // 256 coal
+        Tier.ULTRA     -> 4096000L // 1024 coal
     }
 
     override fun getMaxInsert() = when(tier) {
-        Tier.LOW -> 187L // ~quater of a plank a tick
-        Tier.MIDDLE -> 375L // ~half a plank a tick
-        Tier.HIGH -> 1075L // ~1.5 planks a tick
+        Tier.LOW       -> 96L
+        Tier.MIDDLE    -> 128L
+        Tier.HIGH      -> 348L
+        Tier.VERY_HIGH -> 512L
+        Tier.ULTRA     -> 2048L
     }
 
     override fun getMaxExtract() = when(tier) {
-        Tier.LOW -> 187L // ~quater of a plank a tick
-        Tier.MIDDLE -> 375L // ~half a plank a tick
-        Tier.HIGH -> 1075L // ~1.5 planks a tick
+        Tier.LOW       -> 96L
+        Tier.MIDDLE    -> 128L
+        Tier.HIGH      -> 348L
+        Tier.VERY_HIGH -> 512L
+        Tier.ULTRA     -> 2048L
     }
 
     // write the block pos of this block so it can be retrieved on the client
