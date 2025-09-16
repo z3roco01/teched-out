@@ -1,11 +1,10 @@
-package z3roco01.techedout.block
+package z3roco01.techedout.block.machines
 
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory
 import net.minecraft.block.BlockRenderType
 import net.minecraft.block.BlockState
 import net.minecraft.block.BlockWithEntity
 import net.minecraft.block.entity.BlockEntity
-import net.minecraft.block.entity.BlockEntityTicker
 import net.minecraft.block.entity.BlockEntityType
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.text.Text
@@ -14,13 +13,14 @@ import net.minecraft.util.Hand
 import net.minecraft.util.hit.BlockHitResult
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
-import z3roco01.techedout.blockentity.BatteryBlockEntity
+import z3roco01.techedout.block.Tier
 import z3roco01.techedout.blockentity.EnergyStorageBlockEntity
 import z3roco01.techedout.blockentity.TechedOutBlockEntities
+import z3roco01.techedout.blockentity.machines.BatteryBlockEntity
 
 /**
  * A class to make simple battery blocks
- * @param tier the [Tier] of the battery, used to determine the battery's specs
+ * @param tier the [z3roco01.techedout.block.Tier] of the battery, used to determine the battery's specs
  */
 class BatteryBlock(private val tier: Tier) : BlockWithEntity(Settings.create()) {
     override fun createBlockEntity(pos: BlockPos, state: BlockState) = BatteryBlockEntity(tier, pos, state)
@@ -46,5 +46,5 @@ class BatteryBlock(private val tier: Tier) : BlockWithEntity(Settings.create()) 
     }
 
     override fun <T : BlockEntity> getTicker(world: World, state: BlockState, type: BlockEntityType<T?>) =
-        checkType(type, TechedOutBlockEntities.BATTERY, EnergyStorageBlockEntity::staticTick)
+        checkType(type, TechedOutBlockEntities.BATTERY, EnergyStorageBlockEntity.Companion::staticTick)
 }

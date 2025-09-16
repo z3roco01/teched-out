@@ -6,6 +6,7 @@ import net.minecraft.item.Item
 import net.minecraft.registry.Registries
 import net.minecraft.registry.Registry
 import z3roco01.techedout.TechedOut
+import z3roco01.techedout.block.machines.BatteryBlock
 
 /**
  * Handles the registration of all blocks

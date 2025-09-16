@@ -12,6 +12,7 @@ import z3roco01.techedout.blockentity.EnergyStorageBlockEntity
 import z3roco01.techedout.blockentity.EnergyStorageBlockEntity.Companion.staticTick
 import z3roco01.techedout.blockentity.TechedOutBlockEntities
 
+// TODO: MAKE IT LOOK LIKE A CABLE !!!
 class CableBlock(private val tier: Tier): BlockWithEntity(Settings.create()) {
     override fun createBlockEntity(pos: BlockPos, state: BlockState) = CableBlockEntity(tier, pos, state)
 

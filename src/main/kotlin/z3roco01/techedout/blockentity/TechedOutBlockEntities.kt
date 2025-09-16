@@ -8,6 +8,7 @@ import net.minecraft.registry.Registry
 import team.reborn.energy.api.EnergyStorage
 import z3roco01.techedout.TechedOut
 import z3roco01.techedout.block.TechedOutBlocks
+import z3roco01.techedout.blockentity.machines.BatteryBlockEntity
 
 
 /**
@@ -16,7 +17,8 @@ import z3roco01.techedout.block.TechedOutBlocks
 object TechedOutBlockEntities {
     // register the block entity types
     val BATTERY = registerEnergyStorage("battery",
-        FabricBlockEntityTypeBuilder.create(::BatteryBlockEntity, TechedOutBlocks.LOW_BATTERY,
+        FabricBlockEntityTypeBuilder.create(
+            ::BatteryBlockEntity, TechedOutBlocks.LOW_BATTERY,
             TechedOutBlocks.MIDDLE_BATTERY, TechedOutBlocks.HIGH_BATTERY, TechedOutBlocks.VERY_HIGH_BATTERY,
             TechedOutBlocks.ULTRA_HIGH_BATTERY).build())
     val CABLE = TechedOutBlockEntities.registerEnergyStorage("cable", FabricBlockEntityTypeBuilder

@@ -5,7 +5,7 @@ import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.item.ItemStack
 import net.minecraft.network.PacketByteBuf
 import net.minecraft.screen.ScreenHandler
-import z3roco01.techedout.blockentity.BatteryBlockEntity
+import z3roco01.techedout.blockentity.machines.BatteryBlockEntity
 
 class BatteryScreenHandler(syncId: Int, private val playerInventory: PlayerInventory, val blockEntity: BatteryBlockEntity):
     ScreenHandler(TechedOutScreenHandlers.BATTERY_TYPE, syncId) {

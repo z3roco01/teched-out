@@ -1,4 +1,4 @@
-package z3roco01.techedout.blockentity
+package z3roco01.techedout.blockentity.machines
 
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory
 import net.minecraft.block.BlockState
@@ -9,10 +9,12 @@ import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.text.Text
 import net.minecraft.util.math.BlockPos
 import z3roco01.techedout.block.Tier
+import z3roco01.techedout.blockentity.EnergyStorageBlockEntity
+import z3roco01.techedout.blockentity.TechedOutBlockEntities
 import z3roco01.techedout.screen.BatteryScreenHandler
 
 /**
- * A block entity for the [z3roco01.techedout.block.BatteryBlock]
+ * A block entity for the [z3roco01.techedout.block.machines.BatteryBlock]
  * @param tier the tier of this battery, determines the specs
  */
 class BatteryBlockEntity(private val tier: Tier, pos: BlockPos, state: BlockState):
