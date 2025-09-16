@@ -1,4 +1,4 @@
-package z3roco01.techedout.block.entity
+package z3roco01.techedout.blockentity
 
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory
 import net.minecraft.block.BlockState

@@ -1,4 +1,4 @@
-package z3roco01.techedout.block.entity
+package z3roco01.techedout.blockentity
 
 import net.fabricmc.fabric.api.networking.v1.PlayerLookup
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking

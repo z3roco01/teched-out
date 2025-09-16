@@ -4,7 +4,7 @@ import net.fabricmc.api.ModInitializer
 import net.minecraft.util.Identifier
 import org.slf4j.LoggerFactory
 import z3roco01.techedout.block.TechedOutBlocks
-import z3roco01.techedout.block.entity.TechedOutBlockEntities
+import z3roco01.techedout.blockentity.TechedOutBlockEntities
 import z3roco01.techedout.screen.TechedOutScreenHandlers
 
 object TechedOut : ModInitializer {

@@ -1,4 +1,4 @@
-package z3roco01.techedout.block.entity
+package z3roco01.techedout.blockentity
 
 import net.fabricmc.fabric.api.`object`.builder.v1.block.entity.FabricBlockEntityTypeBuilder
 import net.minecraft.block.entity.BlockEntity

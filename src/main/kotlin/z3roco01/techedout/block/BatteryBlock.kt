@@ -11,8 +11,8 @@ import net.minecraft.util.Hand
 import net.minecraft.util.hit.BlockHitResult
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
-import z3roco01.techedout.block.entity.BatteryBlockEntity
-import z3roco01.techedout.block.entity.EnergyStorageBlockEntity
+import z3roco01.techedout.blockentity.BatteryBlockEntity
+import z3roco01.techedout.blockentity.EnergyStorageBlockEntity
 
 /**
  * A class to make simple battery blocks

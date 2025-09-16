@@ -1,7 +1,7 @@
 package z3roco01.techedout.network
 
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking
-import z3roco01.techedout.block.entity.EnergyStorageBlockEntity
+import z3roco01.techedout.blockentity.EnergyStorageBlockEntity
 
 /**
  * Registers packet listeners on the client side
