@@ -8,5 +8,5 @@ enum class Tier {
     MIDDLE,
     HIGH,
     VERY_HIGH,
-    ULTRA,
+    ULTRA_HIGH,
 }

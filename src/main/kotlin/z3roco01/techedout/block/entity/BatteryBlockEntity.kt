@@ -5,7 +5,6 @@ import net.minecraft.block.BlockState
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.network.PacketByteBuf
-import net.minecraft.screen.ScreenHandler
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.text.Text
 import net.minecraft.util.math.BlockPos
@@ -29,7 +28,7 @@ class BatteryBlockEntity(private val tier: Tier, pos: BlockPos, state: BlockStat
         Tier.MIDDLE    -> 64000L // 16 coal
         Tier.HIGH      -> 256000L // 64 coal
         Tier.VERY_HIGH -> 1024000L // 256 coal
-        Tier.ULTRA     -> 4096000L // 1024 coal
+        Tier.ULTRA_HIGH     -> 4096000L // 1024 coal
     }
 
     override fun getMaxInsert() = when(tier) {
@@ -37,7 +36,7 @@ class BatteryBlockEntity(private val tier: Tier, pos: BlockPos, state: BlockStat
         Tier.MIDDLE    -> 128L
         Tier.HIGH      -> 348L
         Tier.VERY_HIGH -> 512L
-        Tier.ULTRA     -> 2048L
+        Tier.ULTRA_HIGH     -> 2048L
     }
 
     override fun getMaxExtract() = when(tier) {
@@ -45,7 +44,7 @@ class BatteryBlockEntity(private val tier: Tier, pos: BlockPos, state: BlockStat
         Tier.MIDDLE    -> 128L
         Tier.HIGH      -> 348L
         Tier.VERY_HIGH -> 512L
-        Tier.ULTRA     -> 2048L
+        Tier.ULTRA_HIGH     -> 2048L
     }
 
     // write the block pos of this block so it can be retrieved on the client
