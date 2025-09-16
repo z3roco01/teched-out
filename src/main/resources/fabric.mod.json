@@ -11,7 +11,7 @@
 		"sources": "https://github.com/z3roco01/teched-out"
 	},
 	"license": "GPL-3.0",
-	"icon": "assets/teched-out/icon.png",
+	"icon": "assets/teched_out/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
