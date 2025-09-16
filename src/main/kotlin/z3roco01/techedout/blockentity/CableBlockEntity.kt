@@ -17,19 +17,19 @@ class CableBlockEntity(private val tier: Tier, pos: BlockPos, state: BlockState)
     }
 
     override fun getMaxInsert() = when(tier) {
-        Tier.LOW        -> 1L
-        Tier.MIDDLE     -> 1L
-        Tier.HIGH       -> 1L
-        Tier.VERY_HIGH  -> 1L
-        Tier.ULTRA_HIGH -> 1L
+        Tier.LOW        -> 128L
+        Tier.MIDDLE     -> 256L
+        Tier.HIGH       -> 512L
+        Tier.VERY_HIGH  -> 1024L
+        Tier.ULTRA_HIGH -> 2048L
     }
 
     override fun getMaxExtract() = when(tier) {
-        Tier.LOW        -> 1L
-        Tier.MIDDLE     -> 1L
-        Tier.HIGH       -> 1L
-        Tier.VERY_HIGH  -> 1L
-        Tier.ULTRA_HIGH -> 1L
+        Tier.LOW        -> 128L
+        Tier.MIDDLE     -> 256L
+        Tier.HIGH       -> 512L
+        Tier.VERY_HIGH  -> 1024L
+        Tier.ULTRA_HIGH -> 2048L
     }
 
 }
