@@ -16,7 +16,7 @@ import z3roco01.techedout.screen.BatteryScreenHandler
  * @param tier the tier of this battery, determines the specs
  */
 class BatteryBlockEntity(private val tier: Tier, pos: BlockPos, state: BlockState):
-    EnergyStorageBlockEntity(TechedOutBlockEntities.tempBattery, pos, state), ExtendedScreenHandlerFactory {
+    EnergyStorageBlockEntity(TechedOutBlockEntities.BATTERY, pos, state), ExtendedScreenHandlerFactory {
     // constructor for registration
     constructor(pos: BlockPos, state: BlockState): this(Tier.LOW, pos, state)
 
@@ -58,4 +58,5 @@ class BatteryBlockEntity(private val tier: Tier, pos: BlockPos, state: BlockStat
     // creates a BatteryScreenHandler with the passed parameters
     override fun createMenu(syncId: Int, playerInventory: PlayerInventory, player: PlayerEntity) =
         BatteryScreenHandler(syncId, playerInventory, this)
+
 }

@@ -4,6 +4,9 @@ import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory
 import net.minecraft.block.BlockRenderType
 import net.minecraft.block.BlockState
 import net.minecraft.block.BlockWithEntity
+import net.minecraft.block.entity.BlockEntity
+import net.minecraft.block.entity.BlockEntityTicker
+import net.minecraft.block.entity.BlockEntityType
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.text.Text
 import net.minecraft.util.ActionResult
@@ -13,6 +16,7 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 import z3roco01.techedout.blockentity.BatteryBlockEntity
 import z3roco01.techedout.blockentity.EnergyStorageBlockEntity
+import z3roco01.techedout.blockentity.TechedOutBlockEntities
 
 /**
  * A class to make simple battery blocks
@@ -40,4 +44,7 @@ class BatteryBlock(private val tier: Tier) : BlockWithEntity(Settings.create()) 
 
         return ActionResult.SUCCESS
     }
+
+    override fun <T : BlockEntity> getTicker(world: World, state: BlockState, type: BlockEntityType<T?>) =
+        checkType(type, TechedOutBlockEntities.BATTERY, EnergyStorageBlockEntity::staticTick)
 }

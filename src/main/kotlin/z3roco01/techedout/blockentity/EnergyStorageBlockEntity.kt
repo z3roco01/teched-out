@@ -149,6 +149,15 @@ abstract class EnergyStorageBlockEntity(type: BlockEntityType<*>, pos: BlockPos,
         energyStorage.amount = nbt.getLong(ENERGY_NBT_KEY)
     }
 
+    companion object {
+        /**
+         * Called from the block, allows for ticking of this block
+         */
+        fun staticTick(world: World, pos: BlockPos, state: BlockState, blockEntity: EnergyStorageBlockEntity) {
+            blockEntity.tick(world, pos, state, blockEntity)
+        }
+    }
+
     /**
      * An enum to denote what permissions are on a side
      * @param canInsert true when this permission allows for insertion

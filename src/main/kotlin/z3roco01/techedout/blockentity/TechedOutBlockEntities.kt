@@ -15,7 +15,7 @@ import z3roco01.techedout.block.TechedOutBlocks
  */
 object TechedOutBlockEntities {
     // register the block entity types
-    val tempBattery = registerEnergyStorage("battery",
+    val BATTERY = registerEnergyStorage("battery",
         FabricBlockEntityTypeBuilder.create(::BatteryBlockEntity, TechedOutBlocks.LOW_BATTERY,
             TechedOutBlocks.MIDDLE_BATTERY, TechedOutBlocks.HIGH_BATTERY, TechedOutBlocks.VERY_HIGH_BATTERY,
             TechedOutBlocks.ULTRA_HIGH_BATTERY).build())
