@@ -5,7 +5,6 @@ import net.minecraft.client.gui.screen.ingame.HandledScreen
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.text.Text
 import z3roco01.techedout.TechedOut
-import z3roco01.techedout.TechedOutClient
 
 class BatteryScreen(handler: BatteryScreenHandler, private val playerInv: PlayerInventory, title: Text):
     HandledScreen<BatteryScreenHandler>(handler, playerInv, title) {

@@ -1,13 +1,16 @@
 package z3roco01.techedout.block.entity
 
+import net.fabricmc.fabric.api.networking.v1.PlayerLookup
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking
 import net.minecraft.block.BlockState
 import net.minecraft.block.entity.BlockEntity
 import net.minecraft.block.entity.BlockEntityType
 import net.minecraft.nbt.NbtCompound
+import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
 import team.reborn.energy.api.base.SimpleSidedEnergyContainer
-import z3roco01.techedout.TechedOut
+import z3roco01.techedout.network.SyncEnergyPacket
 
 /**
  * Outlines what is needed to implement an energy storage in a block entity
@@ -76,6 +79,18 @@ abstract class EnergyStorageBlockEntity(type: BlockEntityType<*>, pos: BlockPos,
         }
     }
 
+    // overridden so that it will always sync energy to the clients when called
+    override fun markDirty() {
+        // check if the world exists and were not on the client
+        if(world != null && !world!!.isClient){
+            // loop over every player and send them an update packet
+            for(player in PlayerLookup.tracking(world as ServerWorld, getPos()))
+                ServerPlayNetworking.send(player, SyncEnergyPacket.ID, SyncEnergyPacket(getAmount(), pos).toBuf())
+        }
+
+        super.markDirty()
+    }
+
     /**
      * Implemented by inheriters, used to determine the capacity of the energy storage
      */
@@ -88,6 +103,11 @@ abstract class EnergyStorageBlockEntity(type: BlockEntityType<*>, pos: BlockPos,
      * Implemented by inheriters, used to determine the max amount of energy that can be extracted per tick
      */
     abstract fun getMaxExtract(): Long
+
+    /**
+     * Returns how much energy is stored in the energy storage
+     */
+    fun getAmount() = energyStorage.amount
 
     /**
      * the key for accessing the energy count in nbt
