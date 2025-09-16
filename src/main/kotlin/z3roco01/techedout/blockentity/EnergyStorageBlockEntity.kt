@@ -4,11 +4,15 @@ import net.fabricmc.fabric.api.networking.v1.PlayerLookup
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking
 import net.minecraft.block.BlockState
 import net.minecraft.block.entity.BlockEntity
+import net.minecraft.block.entity.BlockEntityTicker
 import net.minecraft.block.entity.BlockEntityType
 import net.minecraft.nbt.NbtCompound
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
+import net.minecraft.world.World
+import team.reborn.energy.api.EnergyStorage
+import team.reborn.energy.api.EnergyStorageUtil
 import team.reborn.energy.api.base.SimpleSidedEnergyContainer
 import z3roco01.techedout.network.SyncEnergyPacket
 
@@ -19,7 +23,7 @@ import z3roco01.techedout.network.SyncEnergyPacket
  * @param state passed from the block, its BlockState
  */
 abstract class EnergyStorageBlockEntity(type: BlockEntityType<*>, pos: BlockPos, state: BlockState):
-    BlockEntity(type, pos, state) {
+    BlockEntity(type, pos, state), BlockEntityTicker<EnergyStorageBlockEntity> {
 
     /**
      * Holds a map from the directions to that sides permissions
@@ -85,10 +89,28 @@ abstract class EnergyStorageBlockEntity(type: BlockEntityType<*>, pos: BlockPos,
         if(world != null && !world!!.isClient){
             // loop over every player and send them an update packet
             for(player in PlayerLookup.tracking(world as ServerWorld, getPos()))
-                ServerPlayNetworking.send(player, SyncEnergyPacket.ID, SyncEnergyPacket(getAmount(), pos).toBuf())
+                ServerPlayNetworking.send(player, SyncEnergyPacket.ID, SyncEnergyPacket(getEnergy(), pos).toBuf())
         }
 
         super.markDirty()
+    }
+
+    // overidden so the block can push to other blocks around it ( how its supposed to work )
+    override fun tick(world: World, pos: BlockPos, state: BlockState, blockEntity: EnergyStorageBlockEntity) {
+        // do not run on the client or if it has no energy
+        if(world.isClient || getEnergy() <= 0) return
+
+        // loop over each side
+        for(side in Direction.entries) {
+            // push energy to anything that is accepting energy beside it
+            // this api is push based not pull so energy should never be pulled
+            EnergyStorageUtil.move(
+                energyStorage.getSideStorage(side),
+                EnergyStorage.SIDED.find(world, pos.offset(side), side.opposite),
+                Long.MAX_VALUE,
+                null
+            )
+        }
     }
 
     /**
@@ -107,7 +129,7 @@ abstract class EnergyStorageBlockEntity(type: BlockEntityType<*>, pos: BlockPos,
     /**
      * Returns how much energy is stored in the energy storage
      */
-    fun getAmount() = energyStorage.amount
+    fun getEnergy() = energyStorage.amount
 
     /**
      * the key for accessing the energy count in nbt

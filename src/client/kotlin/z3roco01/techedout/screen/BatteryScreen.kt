@@ -4,7 +4,6 @@ import net.minecraft.client.gui.DrawContext
 import net.minecraft.client.gui.screen.ingame.HandledScreen
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.text.Text
-import net.minecraft.util.Colors
 import z3roco01.techedout.TechedOut
 
 class BatteryScreen(handler: BatteryScreenHandler, private val playerInv: PlayerInventory, title: Text):
@@ -28,6 +27,6 @@ class BatteryScreen(handler: BatteryScreenHandler, private val playerInv: Player
         context.drawTexture(BG_TEXTURE, centerX, centerY, 0, 0, this.backgroundWidth, this.backgroundHeight)
 
         // temp way to show power amount
-        context.drawText(textRenderer, handler.blockEntity.getAmount().toString(), centerX+50, centerY+20, (0xFF0000FFu).toInt(), true)
+        context.drawText(textRenderer, handler.blockEntity.getEnergy().toString(), centerX+50, centerY+20, (0xFF0000FFu).toInt(), true)
     }
 }
