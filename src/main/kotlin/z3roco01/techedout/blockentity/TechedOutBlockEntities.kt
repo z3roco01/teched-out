@@ -19,29 +19,39 @@ object TechedOutBlockEntities {
         FabricBlockEntityTypeBuilder.create(::BatteryBlockEntity, TechedOutBlocks.LOW_BATTERY,
             TechedOutBlocks.MIDDLE_BATTERY, TechedOutBlocks.HIGH_BATTERY, TechedOutBlocks.VERY_HIGH_BATTERY,
             TechedOutBlocks.ULTRA_HIGH_BATTERY).build())
+    val CABLE = TechedOutBlockEntities.registerEnergyStorage("cable", FabricBlockEntityTypeBuilder
+        .create(::CableBlockEntity, TechedOutBlocks.COPPER_CABLE, TechedOutBlocks.GOLD_CABLE,
+                TechedOutBlocks.HIGH_CABLE, TechedOutBlocks.VERY_HIGH_CABLE, TechedOutBlocks.ULTRA_HIGH_CABLE).build())
 
 
-    /**
-     * Dummy function to ensure everything is loaded in time
-     */
-    fun init() {}
+        /**
+         * Dummy function to ensure everything is loaded in time
+         */
+        fun init() {}
 
-    /**
-     * Does everything that [TechedOutBlockEntities.register] does, and registers this block as an energy storage
-     */
-    fun registerEnergyStorage(name: String, blockEntityType: BlockEntityType<out EnergyStorageBlockEntity>): BlockEntityType<EnergyStorageBlockEntity> {
-        // register the energy storage
-        EnergyStorage.SIDED.registerForBlockEntity({blockEntity, direction -> blockEntity.energyStorage.getSideStorage(direction)}, blockEntityType)
-        // actually register the blockentitytype
-        return register(name, blockEntityType) as BlockEntityType<EnergyStorageBlockEntity>
-    }
+        /**
+         * Does everything that [TechedOutBlockEntities.register] does, and registers this block as an energy storage
+         */
+        fun registerEnergyStorage(
+            name: String,
+            blockEntityType: BlockEntityType<out EnergyStorageBlockEntity>
+        ): BlockEntityType<EnergyStorageBlockEntity> {
+            // register the energy storage
+            EnergyStorage.SIDED.registerForBlockEntity({ blockEntity, direction ->
+                blockEntity.energyStorage.getSideStorage(
+                    direction
+                )
+            }, blockEntityType)
+            // actually register the blockentitytype
+            return register(name, blockEntityType) as BlockEntityType<EnergyStorageBlockEntity>
+        }
 
-    /**
-     * registers a [BlockEntityType] and returns it
-     * @param name the id of the type
-     * @param blockEntityType the [BlockEntityType] to be registered
-     * @return the BlockEntityType, so it can be registered and stored easier
-     */
-    fun <T : BlockEntityType<*>> register(name: String, blockEntityType: T): T =
-        Registry.register(Registries.BLOCK_ENTITY_TYPE, TechedOut.mkId(name), blockEntityType)
+        /**
+         * registers a [BlockEntityType] and returns it
+         * @param name the id of the type
+         * @param blockEntityType the [BlockEntityType] to be registered
+         * @return the BlockEntityType, so it can be registered and stored easier
+         */
+        fun <T : BlockEntityType<*>> register(name: String, blockEntityType: T): T =
+            Registry.register(Registries.BLOCK_ENTITY_TYPE, TechedOut.mkId(name), blockEntityType)
 }

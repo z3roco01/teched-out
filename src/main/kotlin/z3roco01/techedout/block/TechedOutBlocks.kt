@@ -18,6 +18,13 @@ object TechedOutBlocks {
     val VERY_HIGH_BATTERY  = register(BatteryBlock(Tier.VERY_HIGH), "very_high_battery", true)
     val ULTRA_HIGH_BATTERY = register(BatteryBlock(Tier.ULTRA_HIGH), "ultra_high_battery", true)
 
+    val COPPER_CABLE = register(CableBlock(Tier.LOW), "copper_cable", true)
+    val GOLD_CABLE   = register(CableBlock(Tier.MIDDLE), "gold_cable", true)
+    // TODO: name them after their material instead
+    val HIGH_CABLE = register(CableBlock(Tier.HIGH), "high_cable", true)
+    val VERY_HIGH_CABLE = register(CableBlock(Tier.VERY_HIGH), "very_high_cable", true)
+    val ULTRA_HIGH_CABLE = register(CableBlock(Tier.ULTRA_HIGH), "ultra_high_cable", true)
+
     /**
      * Dummy function to ensure everything is loaded in time
      */
