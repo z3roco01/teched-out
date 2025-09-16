@@ -1,5 +1,6 @@
 package z3roco01.techedout.block
 
+import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory
 import net.minecraft.block.BlockRenderType
 import net.minecraft.block.BlockState
 import net.minecraft.block.BlockWithEntity
@@ -30,7 +31,12 @@ class BatteryBlock(private val tier: Tier) : BlockWithEntity(Settings.create()) 
 
         // get this blocks BlockEntity
         val blockEntity = world.getBlockEntity(pos) as EnergyStorageBlockEntity
+        // cast the block entity to screen handler factory so it can be used to create a screen handle
+        val screenHandlerFactory = (blockEntity as ExtendedScreenHandlerFactory)
+
         player.sendMessage(Text.of("${blockEntity.energyStorage.amount}/${blockEntity.energyStorage.capacity}"))
+        // open the screen for the player
+        player.openHandledScreen(screenHandlerFactory)
 
         return ActionResult.SUCCESS
     }

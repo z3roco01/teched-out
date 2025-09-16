@@ -7,7 +7,7 @@ import net.minecraft.text.Text
 import z3roco01.techedout.TechedOut
 import z3roco01.techedout.TechedOutClient
 
-class BatteryScreen(handler: BatteryScreenHandler, playerInv: PlayerInventory, title: Text):
+class BatteryScreen(handler: BatteryScreenHandler, private val playerInv: PlayerInventory, title: Text):
     HandledScreen<BatteryScreenHandler>(handler, playerInv, title) {
     val BG_TEXTURE = TechedOut.mkId("textures/gui/container/battery.png")
 
@@ -15,10 +15,10 @@ class BatteryScreen(handler: BatteryScreenHandler, playerInv: PlayerInventory, t
         super.init()
         // ensure title is centred vertically
         this.titleX = (this.backgroundWidth - textRenderer.getWidth(this.title)) / 2
-        TechedOutClient.logger.info(handler.blockEntity.energyStorage.amount.toString())
     }
 
     override fun drawBackground(context: DrawContext, delta: Float, mouseX: Int, mouseY: Int) {
+        playerInv.player.sendMessage(Text.of(handler.blockEntity.energyStorage.amount.toString()))
         // calculate the middle screen coordinates on the x and y
         val centerX = (this.width - this.backgroundWidth) / 2
         val centerY = (this.height - this.backgroundHeight) / 2
