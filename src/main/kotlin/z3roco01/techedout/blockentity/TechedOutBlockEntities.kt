@@ -8,6 +8,7 @@ import net.minecraft.registry.Registry
 import team.reborn.energy.api.EnergyStorage
 import z3roco01.techedout.TechedOut
 import z3roco01.techedout.block.TechedOutBlocks
+import z3roco01.techedout.blockentity.machines.AlloySmelterBlockEntity
 import z3roco01.techedout.blockentity.machines.BatteryBlockEntity
 
 
@@ -24,6 +25,9 @@ object TechedOutBlockEntities {
     val CABLE = TechedOutBlockEntities.registerEnergyStorage("cable", FabricBlockEntityTypeBuilder
         .create(::CableBlockEntity, TechedOutBlocks.COPPER_CABLE, TechedOutBlocks.GOLD_CABLE,
                 TechedOutBlocks.HIGH_CABLE, TechedOutBlocks.VERY_HIGH_CABLE, TechedOutBlocks.ULTRA_HIGH_CABLE).build())
+    val ALLOY_SMELTER = registerEnergyStorage("alloy_smelter", FabricBlockEntityTypeBuilder.create(
+        ::AlloySmelterBlockEntity, TechedOutBlocks.alloySmetler
+    ).build())
 
 
         /**

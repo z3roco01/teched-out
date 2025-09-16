@@ -6,6 +6,7 @@ import net.minecraft.item.Item
 import net.minecraft.registry.Registries
 import net.minecraft.registry.Registry
 import z3roco01.techedout.TechedOut
+import z3roco01.techedout.block.machines.AlloySmelterBlock
 import z3roco01.techedout.block.machines.BatteryBlock
 
 /**
@@ -25,6 +26,8 @@ object TechedOutBlocks {
     val HIGH_CABLE = register(CableBlock(Tier.HIGH), "high_cable", true)
     val VERY_HIGH_CABLE = register(CableBlock(Tier.VERY_HIGH), "very_high_cable", true)
     val ULTRA_HIGH_CABLE = register(CableBlock(Tier.ULTRA_HIGH), "ultra_high_cable", true)
+
+    val alloySmetler = register(AlloySmelterBlock(Tier.LOW), "alloysmelt", true)
 
     /**
      * Dummy function to ensure everything is loaded in time
