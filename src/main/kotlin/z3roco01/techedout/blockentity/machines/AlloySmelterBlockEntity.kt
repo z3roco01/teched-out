@@ -9,5 +9,4 @@ class AlloySmelterBlockEntity(pos: BlockPos, state: BlockState, tier: Tier):
     MachineBlockEntity(TechedOutBlockEntities.ALLOY_SMELTER, pos, state, tier) {
     constructor(pos: BlockPos, state: BlockState): this(pos, state, Tier.LOW)
 
-
 }

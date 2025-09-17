@@ -26,5 +26,5 @@ object TechedOut : ModInitializer {
      * @param name the name part of the identifier
      * @return the fully qualified id
      */
-    fun mkId(name: String) = Identifier.of(modid, name)
+    fun mkId(name: String) = Identifier.of(modid, name)!!
 }
