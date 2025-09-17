@@ -3,19 +3,25 @@ package z3roco01.techedout.blockentity.machines
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory
 import net.minecraft.block.BlockState
 import net.minecraft.block.entity.BlockEntityType
+import net.minecraft.inventory.Inventories
+import net.minecraft.item.Item
+import net.minecraft.item.ItemStack
+import net.minecraft.nbt.NbtCompound
 import net.minecraft.network.PacketByteBuf
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.text.Text
+import net.minecraft.util.collection.DefaultedList
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
 import z3roco01.techedout.block.Tier
 import z3roco01.techedout.blockentity.EnergyStorageBlockEntity
+import z3roco01.techedout.blockentity.ImplementedInventory
 
 /**
  * A class that outlines a few utilites for machines ( excluding batteries ) and standardizes capacities and draw
  */
 abstract class MachineBlockEntity(type: BlockEntityType<*>, pos: BlockPos, state: BlockState, private val tier: Tier):
-    EnergyStorageBlockEntity(type, pos, state), ExtendedScreenHandlerFactory {
+    EnergyStorageBlockEntity(type, pos, state), ExtendedScreenHandlerFactory, ImplementedInventory {
 
     init {
         // set the permissions so it can only draw power, ever supply
@@ -54,4 +60,16 @@ abstract class MachineBlockEntity(type: BlockEntityType<*>, pos: BlockPos, state
 
     // set the screens name to the translation key of this block
     override fun getDisplayName() = Text.translatable(cachedState.block.translationKey)
+
+    // need to store inventory data
+    override fun writeNbt(nbt: NbtCompound) {
+        super.writeNbt(nbt)
+        Inventories.writeNbt(nbt, items)
+    }
+
+    // need to read inventory
+    override fun readNbt(nbt: NbtCompound) {
+        super.readNbt(nbt)
+        Inventories.readNbt(nbt, items)
+    }
 }

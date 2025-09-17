@@ -4,19 +4,18 @@ import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory
 import net.minecraft.block.BlockRenderType
 import net.minecraft.block.BlockState
 import net.minecraft.block.BlockWithEntity
-import net.minecraft.block.entity.BlockEntity
-import net.minecraft.block.entity.BlockEntityType
 import net.minecraft.entity.player.PlayerEntity
-import net.minecraft.text.Text
+import net.minecraft.screen.ScreenHandler
 import net.minecraft.util.ActionResult
 import net.minecraft.util.Hand
+import net.minecraft.util.ItemScatterer
 import net.minecraft.util.hit.BlockHitResult
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 import z3roco01.techedout.block.Tier
 import z3roco01.techedout.blockentity.EnergyStorageBlockEntity
-import z3roco01.techedout.blockentity.EnergyStorageBlockEntity.Companion.staticTick
-import z3roco01.techedout.blockentity.TechedOutBlockEntities
+import z3roco01.techedout.blockentity.machines.MachineBlockEntity
+
 
 /**
  * Handles things common amongst all machines ( screen opening, blockentity, etc )
@@ -46,4 +45,22 @@ abstract class MachineBlock(protected val tier: Tier, settings: Settings):
 
         return ActionResult.SUCCESS
     }
+
+    // This method will drop all items onto the ground when the block is broken
+    override fun onStateReplaced(state: BlockState, world: World, pos: BlockPos, newState: BlockState, moved: Boolean) {
+        if (state.getBlock() !== newState.getBlock()) {
+            val blockEntity = world.getBlockEntity(pos)
+            if (blockEntity is MachineBlockEntity) {
+                ItemScatterer.spawn(world, pos, blockEntity)
+                // update comparators
+                world.updateComparators(pos, this)
+            }
+            super.onStateReplaced(state, world, pos, newState, moved)
+        }
+    }
+
+    override fun hasComparatorOutput(state: BlockState) = true
+
+    override fun getComparatorOutput(state: BlockState, world: World, pos: BlockPos) =
+        ScreenHandler.calculateComparatorOutput(world.getBlockEntity(pos))
 }

@@ -21,6 +21,11 @@ abstract class BaseScreenHandler(type: ScreenHandlerType<*>, syncId: Int, protec
         addPlayerInventory(playerInventory)
     }
 
+    override fun onClosed(player: PlayerEntity) {
+        super.onClosed(player)
+        playerInventory.onClose(player)
+    }
+
     // handles the qucik moving ( shift + click ) of items into this blocks inventory
     override fun quickMove(player: PlayerEntity, slot: Int): ItemStack {
         var itemStack = ItemStack.EMPTY
