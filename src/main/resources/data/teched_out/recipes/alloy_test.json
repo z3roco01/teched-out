@@ -1,0 +1,16 @@
+{
+  "type": "teched_out:alloying",
+  "ingredients": [
+    {
+      "item": "minecraft:copper_ingot"
+    },
+    {
+      "item": "minecraft:bedrock"
+    }
+  ],
+  "output": {
+    "item": "minecraft:bed"
+  },
+  "alloy_time": 60,
+  "energy_cost": 1000
+}
