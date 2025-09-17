@@ -30,22 +30,31 @@ class AlloyingRecipe(private val ingredients: List<Ingredient>, private val outp
         if(world.isClient) return false
 
         // check every input against the first 3 stacks
-        var valid = false
+        var valid = true
         for(ingredient in ingredients) {
-            for(idx in 0..<3) // when it matches it will set valid to true
-                valid = ingredient.test(inventory.getStack(idx))
-            if(valid == false) // if it it false at then end, then that item does not exist in the inventory
-                return false
+            if(ingredient.isEmpty) continue // if it is empty then it does not matter
+
+            for(idx in 0..inventory.size()) {
+                // if there is one that matches, break to the next ingredient
+                if(ingredient.test(inventory.getStack(idx))) {
+                    break
+                }
+
+                TechedOut.logger.info("no match")
+                // if it got to the end without breaking, return false since there is no match
+                if(idx == inventory.size()-1)
+                    return false
+            }
         }
 
         return true
     }
 
-    override fun craft(inventory: SimpleInventory, registryManager: DynamicRegistryManager) = output.copy()
+    override fun craft(inventory: SimpleInventory, registryManager: DynamicRegistryManager?) = output.copy()
 
     override fun fits(width: Int, height: Int) = true
 
-    override fun getOutput(registryManager: DynamicRegistryManager) = output
+    override fun getOutput(registryManager: DynamicRegistryManager?) = output
 
     override fun getId() = ID
 

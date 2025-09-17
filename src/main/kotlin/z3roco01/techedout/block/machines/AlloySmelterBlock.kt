@@ -13,4 +13,7 @@ import z3roco01.techedout.blockentity.machines.AlloySmelterBlockEntity
 
 class AlloySmelterBlock(tier: Tier): MachineBlock(tier) {
     override fun createBlockEntity(pos: BlockPos, state: BlockState) = AlloySmelterBlockEntity(pos, state, tier)
+
+    override fun <T : BlockEntity> getTicker(world: World, state: BlockState, type: BlockEntityType<T?>) =
+        checkType(type, TechedOutBlockEntities.ALLOY_SMELTER, EnergyStorageBlockEntity::staticTick)
 }
