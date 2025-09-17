@@ -1,17 +1,19 @@
 package z3roco01.techedout.screen
 
+import net.minecraft.block.entity.BlockEntity
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.item.ItemStack
 import net.minecraft.screen.ScreenHandler
 import net.minecraft.screen.ScreenHandlerType
 import net.minecraft.screen.slot.Slot
+import z3roco01.techedout.blockentity.EnergyStorageBlockEntity
 import z3roco01.techedout.blockentity.machines.BatteryBlockEntity
 
 /**
  * Does common logic ( like setting up slots ) that is common among all screen handlers
  */
-abstract class BaseScreenHandler(type: ScreenHandlerType<*>, syncId: Int, protected val playerInventory: PlayerInventory, val blockEntity: BatteryBlockEntity):
+abstract class BaseScreenHandler(type: ScreenHandlerType<*>, syncId: Int, protected val playerInventory: PlayerInventory, val blockEntity: EnergyStorageBlockEntity):
     ScreenHandler(type, syncId) {
 
     init {

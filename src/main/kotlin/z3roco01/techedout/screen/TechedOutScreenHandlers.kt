@@ -3,12 +3,15 @@ package z3roco01.techedout.screen
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType
 import net.minecraft.registry.Registries
 import net.minecraft.registry.Registry
+import net.minecraft.screen.ScreenHandler
 import net.minecraft.screen.ScreenHandlerType
 import z3roco01.techedout.TechedOut
 
 object TechedOutScreenHandlers {
     val BATTERY_TYPE: ScreenHandlerType<BatteryScreenHandler> =
         register("battery", ExtendedScreenHandlerType(::BatteryScreenHandler)) as ScreenHandlerType<BatteryScreenHandler>
+    val ALLOY_SMELTER: ScreenHandlerType<AlloySmelterScreenHandler> =
+        register("alloy_smelter", ExtendedScreenHandlerType(::AlloySmelterScreenHandler)) as ScreenHandlerType<AlloySmelterScreenHandler>
 
     /**
      * Dummy function to ensure everything is loaded in time

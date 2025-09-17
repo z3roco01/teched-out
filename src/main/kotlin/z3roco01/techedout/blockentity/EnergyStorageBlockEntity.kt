@@ -134,7 +134,7 @@ abstract class EnergyStorageBlockEntity(type: BlockEntityType<*>, pos: BlockPos,
     /**
      * the key for accessing the energy count in nbt
      */
-    val ENERGY_NBT_KEY = ""
+    val ENERGY_NBT_KEY = "teched_out:energy"
 
     // overriden so it can store its energy amount
     override fun writeNbt(nbt: NbtCompound) {
