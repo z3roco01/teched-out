@@ -14,6 +14,7 @@ import net.minecraft.util.Identifier
 import net.minecraft.util.collection.DefaultedList
 import net.minecraft.world.World
 import z3roco01.techedout.TechedOut
+import kotlin.contracts.SimpleEffect
 import kotlin.coroutines.coroutineContext
 
 /**
@@ -24,13 +25,6 @@ import kotlin.coroutines.coroutineContext
  * @param energyCost how much energy is taken
  */
 class AlloyingRecipe(private val ingredients: List<Ingredient>, private val output: ItemStack, private val alloyTime: Int, private val energyCost: Int): Recipe<SimpleInventory> {
-    init {
-        for(ingred in ingredients)
-            TechedOut.logger.info(ingred.toString())
-        TechedOut.logger.info(output.name.toString())
-        TechedOut.logger.info(alloyTime.toString())
-        TechedOut.logger.info(energyCost.toString())
-    }
     override fun matches(inventory: SimpleInventory, world: World): Boolean {
         // crafting should only happen server side
         if(world.isClient) return false
@@ -67,7 +61,7 @@ class AlloyingRecipe(private val ingredients: List<Ingredient>, private val outp
             // create list for ingredients
             val ingredients = DefaultedList.ofSize(3, Ingredient.EMPTY)
             // then parse in each ingredient from the array
-            for(i in 0..<ingredients.size)
+            for(i in 0..<ingredientsArr.size())
                 ingredients[i] = Ingredient.fromJson(ingredientsArr.get(i))
 
             // parse in ItemStack using helper from another recipe

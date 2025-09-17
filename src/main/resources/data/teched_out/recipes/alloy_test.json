@@ -9,7 +9,7 @@
     }
   ],
   "output": {
-    "item": "minecraft:bed"
+    "item": "minecraft:pink_bed"
   },
   "alloy_time": 60,
   "energy_cost": 1000
