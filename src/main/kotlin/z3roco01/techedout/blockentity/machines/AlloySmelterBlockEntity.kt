@@ -91,9 +91,11 @@ class AlloySmelterBlockEntity(pos: BlockPos, state: BlockState, tier: Tier):
     private fun craft(recipe: AlloyingRecipe) {
         // loop over each input and ingredient
         for(i in 0..<3) {
-            // if it is an ingredient, then take away the correct amount
-            if(!recipe.ingredients[i].isEmpty())
-                items[i].decrement(recipe.ingredients[i].count)
+            // attempt to find a matching ingredient
+            val ingredient = recipe.findIngredient(items[i])
+            // if an ingredient was found, decrement the count
+            if(ingredient != null)
+                items[i].decrement(ingredient.count)
         }
 
         // if there is already the output item in the slot, just increment the count

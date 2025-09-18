@@ -20,6 +20,11 @@ class CountedIngredient(val ingredient: Ingredient, val count: Int): Predicate<I
     override fun test(itemStack: ItemStack) = (itemStack.count >= count) && (ingredient.test(itemStack))
 
     /**
+     * Only tests the item and not the count
+     */
+    fun testItem(itemStack: ItemStack) = (ingredient.test(itemStack))
+
+    /**
      * Returns true if either the count is less than or equal to 0, or the ingredient is empty
      */
     fun isEmpty() = (count <= 0) || (ingredient.isEmpty)

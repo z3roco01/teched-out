@@ -31,6 +31,20 @@ class AlloyingRecipe(val ingredients: List<CountedIngredient>, private val outpu
      */
     val energyPerTick: Int = round(energyCost.toDouble()/alloyTime.toDouble()).toInt()
 
+    /**
+     * Finds the ingredient that corresponds with an item if it exists
+     */
+    fun findIngredient(itemStack: ItemStack): CountedIngredient? {
+        for(ingredient in ingredients) {
+            // if the item tests true with the ingredient, return it
+            if(ingredient.testItem(itemStack))
+                return ingredient
+        }
+
+        // if it did not find an ingredient, return null
+        return null
+    }
+
     override fun matches(inventory: SimpleInventory, world: World): Boolean {
         // crafting should only happen server side
         if(world.isClient) return false
