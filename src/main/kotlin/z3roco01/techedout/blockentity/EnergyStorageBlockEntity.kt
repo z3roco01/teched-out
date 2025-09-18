@@ -85,14 +85,20 @@ abstract class EnergyStorageBlockEntity(type: BlockEntityType<*>, pos: BlockPos,
 
     // overridden so that it will always sync energy to the clients when called
     override fun markDirty() {
+        syncEnergy()
+        super.markDirty()
+    }
+
+    /**
+     * Sends a sync energy packet to every player so they can access the energy amount on this block
+     */
+    private fun syncEnergy() {
         // check if the world exists and were not on the client
         if(world != null && !world!!.isClient){
             // loop over every player and send them an update packet
             for(player in PlayerLookup.tracking(world as ServerWorld, getPos()))
                 ServerPlayNetworking.send(player, SyncEnergyPacket.ID, SyncEnergyPacket(getEnergy(), pos).toBuf())
         }
-
-        super.markDirty()
     }
 
     // overidden so the block can push to other blocks around it ( how its supposed to work )
@@ -186,6 +192,8 @@ abstract class EnergyStorageBlockEntity(type: BlockEntityType<*>, pos: BlockPos,
         super.readNbt(nbt)
         // get the long from the nbt and set it
         energyStorage.amount = nbt.getLong(ENERGY_NBT_KEY)
+        // sync with the client, makes it available right when the world is opened
+        syncEnergy()
     }
 
     companion object {
