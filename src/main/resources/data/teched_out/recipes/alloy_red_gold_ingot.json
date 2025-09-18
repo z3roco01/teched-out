@@ -9,21 +9,15 @@
     },
     {
       "ingredient": {
-        "item": "minecraft:bedrock"
+        "item": "minecraft:gold_ingot"
       },
       "count": 3
-    },
-    {
-      "ingredient": {
-        "item": "minecraft:iron_ore"
-      },
-      "count": 1
     }
   ],
   "output": {
-    "item": "minecraft:gold_ore",
-    "count": 2
+    "item": "teched_out:red_gold_ingot",
+    "count": 4
   },
-  "alloy_time": 40,
-  "energy_cost": 1000
+  "alloy_time": 100,
+  "energy_cost": 1600
 }
