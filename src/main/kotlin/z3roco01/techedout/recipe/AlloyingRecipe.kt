@@ -36,7 +36,6 @@ class AlloyingRecipe(val ingredients: List<CountedIngredient>, private val outpu
         if(world.isClient) return false
 
         // check every input against the first 3 stacks
-        var valid = true
         for(ingredient in ingredients) {
             if(ingredient.isEmpty()) continue // if it is empty then it does not matter
 

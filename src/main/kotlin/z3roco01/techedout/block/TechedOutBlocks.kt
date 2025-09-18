@@ -27,7 +27,9 @@ object TechedOutBlocks {
     val VERY_HIGH_CABLE = register(CableBlock(Tier.VERY_HIGH), "very_high_cable", true)
     val ULTRA_HIGH_CABLE = register(CableBlock(Tier.ULTRA_HIGH), "ultra_high_cable", true)
 
-    val alloySmetler = register(AlloySmelterBlock(Tier.LOW), "alloysmelt", true)
+    val LOW_ALLOY_SMELTER    = register(AlloySmelterBlock(Tier.LOW), "low_alloy_smelter", true)
+    val MIDDLE_ALLOY_SMELTER = register(AlloySmelterBlock(Tier.MIDDLE), "middle_alloy_smelter", true)
+    val HIGH_ALLOY_SMELTER   = register(AlloySmelterBlock(Tier.HIGH), "high_alloy_smelter", true)
 
     /**
      * Dummy function to ensure everything is loaded in time
