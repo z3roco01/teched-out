@@ -11,6 +11,7 @@ class AlloySmelterScreen(handler: AlloySmelterScreenHandler, playerInv: PlayerIn
     val energyBar = EnergyBarElement(16, 26, handler.blockEntity)
 
     override fun drawForeground(context: DrawContext, mouseX: Int, mouseY: Int) {
+        super.drawForeground(context, mouseX, mouseY)
         energyBar.render(context, mouseX, mouseY)
     }
 }
