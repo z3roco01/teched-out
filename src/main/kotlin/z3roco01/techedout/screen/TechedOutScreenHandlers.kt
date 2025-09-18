@@ -12,6 +12,8 @@ object TechedOutScreenHandlers {
         register("battery", ExtendedScreenHandlerType(::BatteryScreenHandler)) as ScreenHandlerType<BatteryScreenHandler>
     val ALLOY_SMELTER: ScreenHandlerType<AlloySmelterScreenHandler> =
         register("alloy_smelter", ExtendedScreenHandlerType(::AlloySmelterScreenHandler)) as ScreenHandlerType<AlloySmelterScreenHandler>
+    val ELECTROLYZER: ScreenHandler<ElectrolyzerScreenHandler> =
+        register("electrolyzer", ExtendedScreenHandlerType(::ElectrolyzerScreenHandler)) as ScreenHandlerType<ElectrolyzerScreenHandler>
 
     /**
      * Dummy function to ensure everything is loaded in time

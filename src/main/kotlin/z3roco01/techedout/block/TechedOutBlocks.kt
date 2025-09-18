@@ -8,6 +8,7 @@ import net.minecraft.registry.Registry
 import z3roco01.techedout.TechedOut
 import z3roco01.techedout.block.machines.AlloySmelterBlock
 import z3roco01.techedout.block.machines.BatteryBlock
+import z3roco01.techedout.block.machines.ElectrolyzerBlock
 
 /**
  * Handles the registration of all blocks
@@ -30,6 +31,11 @@ object TechedOutBlocks {
     val LOW_ALLOY_SMELTER    = register(AlloySmelterBlock(Tier.LOW), "low_alloy_smelter", true)
     val MIDDLE_ALLOY_SMELTER = register(AlloySmelterBlock(Tier.MIDDLE), "middle_alloy_smelter", true)
     val HIGH_ALLOY_SMELTER   = register(AlloySmelterBlock(Tier.HIGH), "high_alloy_smelter", true)
+
+    // electrolyzers start at high since they are locked behind red gold
+    val HIGH_ELECTROLYZER       = register(ElectrolyzerBlock(Tier.HIGH), "high_electrolyzer", true)
+    val VERY_HIGH_ELECTROLYZER  = register(ElectrolyzerBlock(Tier.VERY_HIGH), "very_high_electrolyzer", true)
+    val ULTRA_HIGH_ELECTROLYZER = register(ElectrolyzerBlock(Tier.ULTRA_HIGH), "ultra_high_electrolyzer", true)
 
     /**
      * Dummy function to ensure everything is loaded in time
