@@ -8,7 +8,7 @@ import z3roco01.techedout.screen.element.EnergyBarElement
 
 class AlloySmelterScreen(handler: AlloySmelterScreenHandler, playerInv: PlayerInventory, title: Text):
     BaseScreen<AlloySmelterScreenHandler>(handler, playerInv, title, TechedOut.mkId("textures/gui/container/alloy_smelter.png")) {
-    val energyBar = EnergyBarElement(16, 26, handler.blockEntity)
+    val energyBar = EnergyBarElement(16, 18, handler.blockEntity)
 
     override fun drawForeground(context: DrawContext, mouseX: Int, mouseY: Int) {
         super.drawForeground(context, mouseX, mouseY)
