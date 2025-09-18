@@ -21,8 +21,9 @@
     }
   ],
   "output": {
-    "item": "minecraft:pink_bed"
+    "item": "minecraft:gold_ore",
+    "count": 2
   },
-  "alloy_time": 60,
+  "alloy_time": 40,
   "energy_cost": 1000
 }

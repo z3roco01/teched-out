@@ -44,16 +44,22 @@ class AlloySmelterBlockEntity(pos: BlockPos, state: BlockState, tier: Tier):
         val recipe = getCurrentRecipe()
         // only do recipe logic if there is actually a recipe
         if(recipe.isPresent) {
-            // increment progress each tick, only if it has not exceeded the mxa
-            if(curProgress < maxProgress)
+            // set the max progress to the alloy time
+            maxProgress = recipe.get().alloyTime
+
+            // if it can keep drawing energy and the recipe is not finished, then draw and continue
+            if(curProgress < maxProgress && getEnergy() >= recipe.get().energyPerTick) {
+                decrementEnergy(recipe.get().energyPerTick.toLong())
+                // also increment progress, since we have taken energy
                 curProgress++
-
-            // if it is equal to the max, make the recipe if there is space
-            if(items[3].isEmpty) {
-                items[3] = recipe.get().getOutput(null).copy()
             }
-        }else {
 
+            // if the progress equal to the max, make the recipe if there is space
+            if(curProgress >= maxProgress && outputHasSpace(recipe.get()))
+                craft(recipe.get())
+        }else {
+            // there is not longer a recipe, so reset the progresses
+            resetProgresses()
         }
     }
 
@@ -63,6 +69,41 @@ class AlloySmelterBlockEntity(pos: BlockPos, state: BlockState, tier: Tier):
     private fun resetProgresses() {
         curProgress = 0
         maxProgress = 0
+    }
+
+    /**
+     * Checks if the output is either empty, or of the same item and has space for the new amount
+     */
+    private fun outputHasSpace(recipe: AlloyingRecipe): Boolean {
+        // if the output slot is not empty, and if the items are not the same, there is no way it can be outputted
+        if(!items[3].isEmpty && items[3].item != recipe.getOutput(null).item) return false
+
+        // if the current output stack is at its max capacity then it also cant be added to
+        if(items[3].count == items[3].maxCount) return false
+
+        // now check if it is output-count less than or more its max, if so return true
+        return (items[3].count <= items[3].maxCount-recipe.getOutput(null).count)
+    }
+
+    /**
+     * Sets the output, and takes away the inputs
+     */
+    private fun craft(recipe: AlloyingRecipe) {
+        // loop over each input and ingredient
+        for(i in 0..<3) {
+            // if it is an ingredient, then take away the correct amount
+            if(!recipe.ingredients[i].isEmpty())
+                items[i].decrement(recipe.ingredients[i].count)
+        }
+
+        // if there is already the output item in the slot, just increment the count
+        if(items[3].item == recipe.getOutput(null).item)
+            items[3].increment(recipe.getOutput(null).count)
+        else // otherwise just set the slot
+            items[3] = recipe.getOutput(null).copy()
+
+        // then reset all progress counters
+        resetProgresses()
     }
 
     /**

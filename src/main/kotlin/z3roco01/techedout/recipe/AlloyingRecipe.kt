@@ -16,6 +16,7 @@ import net.minecraft.world.World
 import z3roco01.techedout.TechedOut
 import kotlin.contracts.SimpleEffect
 import kotlin.coroutines.coroutineContext
+import kotlin.math.round
 
 /**
  * Defines and checks recipes in the alloy smelter
@@ -24,7 +25,12 @@ import kotlin.coroutines.coroutineContext
  * @param alloyTime how many ticks the alloying takes
  * @param energyCost how much energy is taken
  */
-class AlloyingRecipe(private val ingredients: List<CountedIngredient>, private val output: ItemStack, private val alloyTime: Int, private val energyCost: Int): Recipe<SimpleInventory> {
+class AlloyingRecipe(val ingredients: List<CountedIngredient>, private val output: ItemStack, val alloyTime: Int, val energyCost: Int): Recipe<SimpleInventory> {
+    /**
+     * The amount of energy that should be consumed each tick ( gets rounded to the nearest digit )
+     */
+    val energyPerTick: Int = round(energyCost.toDouble()/alloyTime.toDouble()).toInt()
+
     override fun matches(inventory: SimpleInventory, world: World): Boolean {
         // crafting should only happen server side
         if(world.isClient) return false

@@ -132,6 +132,45 @@ abstract class EnergyStorageBlockEntity(type: BlockEntityType<*>, pos: BlockPos,
     fun getEnergy() = energyStorage.amount
 
     /**
+     * Decrements the stored energy by the specified amount, and marks this block dirt
+     * @return the amount of energy that could not be consumed ( if any )
+     */
+    fun decrementEnergy(amount: Long): Long {
+        var remainder = 0L
+        // dont let the energy go 0, if it is to little, set it to 0 and return remainder
+        if(getEnergy() < amount) {
+            remainder = amount - energyStorage.amount
+            energyStorage.amount = 0
+        }else // otherwise just remove energy
+            energyStorage.amount -= amount
+
+        // mark dirty so it saves and syncs
+        markDirty()
+
+        return remainder
+    }
+
+    /**
+     * Increments the stored energy by the specified amount
+     * @return the amount of energy that could not be stored ( if any )
+     */
+    fun incrementEnergy(amount: Long): Long {
+        var remainder = 0L
+
+        // if it cant store all the energy, set it to capacity and return the remainder
+        if(getEnergy() + amount > getEnergyCapacity()) {
+            remainder = getEnergyCapacity() - energyStorage.amount
+            energyStorage.amount = getEnergyCapacity()
+        }else // otherwise just remove energy
+            energyStorage.amount += amount
+
+        // mark dirty so it saves and syncs
+        markDirty()
+
+        return remainder
+    }
+
+    /**
      * the key for accessing the energy count in nbt
      */
     val ENERGY_NBT_KEY = "teched_out:energy"
