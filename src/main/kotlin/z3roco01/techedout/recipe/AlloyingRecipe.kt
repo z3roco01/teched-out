@@ -24,7 +24,7 @@ import kotlin.coroutines.coroutineContext
  * @param alloyTime how many ticks the alloying takes
  * @param energyCost how much energy is taken
  */
-class AlloyingRecipe(private val ingredients: List<Ingredient>, private val output: ItemStack, private val alloyTime: Int, private val energyCost: Int): Recipe<SimpleInventory> {
+class AlloyingRecipe(private val ingredients: List<CountedIngredient>, private val output: ItemStack, private val alloyTime: Int, private val energyCost: Int): Recipe<SimpleInventory> {
     override fun matches(inventory: SimpleInventory, world: World): Boolean {
         // crafting should only happen server side
         if(world.isClient) return false
@@ -32,7 +32,7 @@ class AlloyingRecipe(private val ingredients: List<Ingredient>, private val outp
         // check every input against the first 3 stacks
         var valid = true
         for(ingredient in ingredients) {
-            if(ingredient.isEmpty) continue // if it is empty then it does not matter
+            if(ingredient.isEmpty()) continue // if it is empty then it does not matter
 
             for(idx in 0..inventory.size()) {
                 // if there is one that matches, break to the next ingredient
@@ -40,7 +40,6 @@ class AlloyingRecipe(private val ingredients: List<Ingredient>, private val outp
                     break
                 }
 
-                TechedOut.logger.info("no match")
                 // if it got to the end without breaking, return false since there is no match
                 if(idx == inventory.size()-1)
                     return false
@@ -68,10 +67,10 @@ class AlloyingRecipe(private val ingredients: List<Ingredient>, private val outp
             val ingredientsArr = json["ingredients"].asJsonArray
 
             // create list for ingredients
-            val ingredients = DefaultedList.ofSize(3, Ingredient.EMPTY)
+            val ingredients = DefaultedList.ofSize(3, CountedIngredient.EMPTY)
             // then parse in each ingredient from the array
             for(i in 0..<ingredientsArr.size())
-                ingredients[i] = Ingredient.fromJson(ingredientsArr.get(i))
+                ingredients[i] = CountedIngredient.fromJson(ingredientsArr.get(i).asJsonObject)
 
             // parse in ItemStack using helper from another recipe
             val output = ShapedRecipe.outputFromJson(json["output"] as JsonObject?)
@@ -90,10 +89,10 @@ class AlloyingRecipe(private val ingredients: List<Ingredient>, private val outp
             val size = buf.readInt()
 
             // create the ingredients list
-            val ingredients = DefaultedList.ofSize(size, Ingredient.EMPTY)
+            val ingredients = DefaultedList.ofSize(size, CountedIngredient.EMPTY)
             // and read in each ingredient from the buffer
             for(i in 0..<size)
-                ingredients[i] = Ingredient.fromPacket(buf)
+                ingredients[i] = CountedIngredient.fromPacket(buf)
             // then read in the output
             val output = buf.readItemStack()
             // next read in alloy time
@@ -110,7 +109,7 @@ class AlloyingRecipe(private val ingredients: List<Ingredient>, private val outp
             buf.writeInt(recipe.ingredients.size)
             // then write each ingredient
             for(ingredient in recipe.ingredients)
-                ingredient.write(buf)
+                ingredient.writePacket(buf)
             // then write the output
             buf.writeItemStack(recipe.output)
             // write the alloy time

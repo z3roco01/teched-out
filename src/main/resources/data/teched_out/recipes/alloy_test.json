@@ -2,10 +2,22 @@
   "type": "teched_out:alloying",
   "ingredients": [
     {
-      "item": "minecraft:copper_ingot"
+      "ingredient": {
+        "item": "minecraft:copper_ingot"
+      },
+      "count": 1
     },
     {
-      "item": "minecraft:bedrock"
+      "ingredient": {
+        "item": "minecraft:bedrock"
+      },
+      "count": 3
+    },
+    {
+      "ingredient": {
+        "item": "minecraft:iron_ore"
+      },
+      "count": 1
     }
   ],
   "output": {
