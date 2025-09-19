@@ -14,6 +14,7 @@ import net.minecraft.util.Identifier
 import net.minecraft.util.collection.DefaultedList
 import net.minecraft.world.World
 import z3roco01.techedout.TechedOut
+import z3roco01.techedout.recipe.ingredient.CountedIngredient
 import kotlin.contracts.SimpleEffect
 import kotlin.coroutines.coroutineContext
 import kotlin.math.round
@@ -25,7 +26,8 @@ import kotlin.math.round
  * @param alloyTime how many ticks the alloying takes
  * @param energyCost how much energy is taken
  */
-class AlloyingRecipe(val ingredients: List<CountedIngredient>, private val output: ItemStack, val alloyTime: Int, val energyCost: Int): Recipe<SimpleInventory> {
+class AlloyingRecipe(val ingredients: List<CountedIngredient>, private val output: ItemStack, val alloyTime: Int, val energyCost: Int):
+    Recipe<SimpleInventory> {
     /**
      * The amount of energy that should be consumed each tick ( gets rounded to the nearest digit )
      */

@@ -1,6 +1,5 @@
-package z3roco01.techedout.recipe
+package z3roco01.techedout.recipe.ingredient
 
-import com.google.gson.JsonElement
 import com.google.gson.JsonObject
 import net.fabricmc.fabric.api.recipe.v1.ingredient.FabricIngredient
 import net.minecraft.item.ItemStack
@@ -31,7 +30,7 @@ class CountedIngredient(val ingredient: Ingredient, val count: Int): Predicate<I
 
     /**
      * Writes the ingredient to the passed PacketByteBuf
-     * @param buf the [PacketByteBuf] to write to
+     * @param buf the [net.minecraft.network.PacketByteBuf] to write to
      */
     fun writePacket(buf: PacketByteBuf) {
         // first write the ingredient

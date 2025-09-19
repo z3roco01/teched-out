@@ -13,5 +13,8 @@ object TechedOutRecipes {
     fun register() {
         Registry.register(Registries.RECIPE_TYPE, AlloyingRecipe.ID, AlloyingRecipe.Type.INSTANCE)
         Registry.register(Registries.RECIPE_SERIALIZER, AlloyingRecipe.ID, AlloyingRecipe.Serializer.INSTANCE)
+
+        Registry.register(Registries.RECIPE_TYPE, ElectrolyzeRecipe.ID, ElectrolyzeRecipe.Type.INSTANCE)
+        Registry.register(Registries.RECIPE_SERIALIZER, ElectrolyzeRecipe.ID, ElectrolyzeRecipe.Serializer.INSTANCE)
     }
 }
