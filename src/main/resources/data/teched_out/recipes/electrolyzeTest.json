@@ -1,0 +1,22 @@
+{
+  "inputs": [
+    {
+      "ingredient": {
+        "item": "minecraft:copper_ore"
+      },
+      "count": 3
+    }
+  ],
+  "outputs": [
+    {
+      "item": "minecraft:snow_ball",
+      "count": 5
+    },
+    {
+      "item": "minecraft:red_dye",
+      "count": 41
+    }
+  ],
+  "electrolyze_time": 20,
+  "energy_cost": 20
+}

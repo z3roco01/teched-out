@@ -21,7 +21,14 @@ class CountedIngredient(val ingredient: Ingredient, val count: Int): Predicate<I
     /**
      * Only tests the item and not the count
      */
-    fun testItem(itemStack: ItemStack) = (ingredient.test(itemStack))
+    fun testItem(itemStack: ItemStack) : Boolean {
+        // need a clause if it is empty, since Ingredient.test() returns true on empty
+        if(itemStack.isEmpty) {
+            // if they are both empty, then return true
+            return ingredient.isEmpty
+        }else
+            return ingredient.test(itemStack)
+    }
 
     /**
      * Returns true if either the count is less than or equal to 0, or the ingredient is empty
@@ -32,7 +39,7 @@ class CountedIngredient(val ingredient: Ingredient, val count: Int): Predicate<I
      * Writes the ingredient to the passed PacketByteBuf
      * @param buf the [net.minecraft.network.PacketByteBuf] to write to
      */
-    fun writePacket(buf: PacketByteBuf) {
+    fun write(buf: PacketByteBuf) {
         // first write the ingredient
         ingredient.write(buf)
         // then write the count

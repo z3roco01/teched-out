@@ -4,7 +4,6 @@ import com.google.gson.JsonObject
 import net.minecraft.inventory.SimpleInventory
 import net.minecraft.item.ItemStack
 import net.minecraft.network.PacketByteBuf
-import net.minecraft.recipe.Ingredient
 import net.minecraft.recipe.Recipe
 import net.minecraft.recipe.RecipeSerializer
 import net.minecraft.recipe.RecipeType
@@ -15,8 +14,6 @@ import net.minecraft.util.collection.DefaultedList
 import net.minecraft.world.World
 import z3roco01.techedout.TechedOut
 import z3roco01.techedout.recipe.ingredient.CountedIngredient
-import kotlin.contracts.SimpleEffect
-import kotlin.coroutines.coroutineContext
 import kotlin.math.round
 
 /**
@@ -51,11 +48,11 @@ class AlloyingRecipe(val ingredients: List<CountedIngredient>, private val outpu
         // crafting should only happen server side
         if(world.isClient) return false
 
-        // check every input against the first 3 stacks
+        // use findIngredient function, if it doesnt find one return false, since that item does not exist in the recipe
         for(ingredient in ingredients) {
             if(ingredient.isEmpty()) continue // if it is empty then it does not matter
 
-            for(idx in 0..inventory.size()) {
+            for(idx in 0..<3) {
                 // if there is one that matches, break to the next ingredient
                 if(ingredient.test(inventory.getStack(idx))) {
                     break
@@ -130,7 +127,7 @@ class AlloyingRecipe(val ingredients: List<CountedIngredient>, private val outpu
             buf.writeInt(recipe.ingredients.size)
             // then write each ingredient
             for(ingredient in recipe.ingredients)
-                ingredient.writePacket(buf)
+                ingredient.write(buf)
             // then write the output
             buf.writeItemStack(recipe.output)
             // write the alloy time
