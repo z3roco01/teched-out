@@ -7,8 +7,8 @@ import z3roco01.techedout.TechedOut
 import z3roco01.techedout.screen.element.EnergyBarElement
 
 class ElectrolyzerScreen(handler: ElectrolyzerScreenHandler, playerInv: PlayerInventory, title: Text):
-    BaseScreen<ElectrolyzerScreenHandler>(handler, playerInv, title, TechedOut.mkId("textures/gui/container/battery.png")) {
-    val energyBar = EnergyBarElement(16, 18, handler.blockEntity)
+    BaseScreen<ElectrolyzerScreenHandler>(handler, playerInv, title, TechedOut.mkId("textures/gui/container/electrolyzer.png")) {
+    val energyBar = EnergyBarElement(12, 18, handler.blockEntity)
 
     override fun drawForeground(context: DrawContext, mouseX: Int, mouseY: Int) {
         super.drawForeground(context, mouseX, mouseY)

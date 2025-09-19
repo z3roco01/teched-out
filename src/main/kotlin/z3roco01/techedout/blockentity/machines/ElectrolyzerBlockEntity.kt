@@ -18,6 +18,5 @@ class ElectrolyzerBlockEntity(pos: BlockPos, state: BlockState, tier: Tier):
     override fun createMenu(syncId: Int, playerInventory: PlayerInventory, player: PlayerEntity) =
         ElectrolyzerScreenHandler(syncId, playerInventory, this)
 
-    // TODO: TEMP SIZE WILL MAKE ACTUAL INVENTORY SIZE
-    override val items = DefaultedList.ofSize(1, ItemStack.EMPTY)
+    override val items = DefaultedList.ofSize(6, ItemStack.EMPTY)
 }
