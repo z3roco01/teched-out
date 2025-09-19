@@ -9,14 +9,12 @@ import net.minecraft.screen.ScreenHandler
 import net.minecraft.util.collection.DefaultedList
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
-import z3roco01.techedout.TechedOut
 import z3roco01.techedout.block.Tier
 import z3roco01.techedout.blockentity.EnergyStorageBlockEntity
 import z3roco01.techedout.blockentity.TechedOutBlockEntities
 import z3roco01.techedout.recipe.AlloyingRecipe
 import z3roco01.techedout.screen.AlloySmelterScreenHandler
 import java.util.Optional
-import kotlin.math.max
 
 class AlloySmelterBlockEntity(pos: BlockPos, state: BlockState, tier: Tier):
     MachineBlockEntity(TechedOutBlockEntities.ALLOY_SMELTER, pos, state, tier) {

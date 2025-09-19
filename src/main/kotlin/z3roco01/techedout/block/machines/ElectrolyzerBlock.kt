@@ -8,14 +8,14 @@ import net.minecraft.world.World
 import z3roco01.techedout.block.Tier
 import z3roco01.techedout.blockentity.EnergyStorageBlockEntity
 import z3roco01.techedout.blockentity.TechedOutBlockEntities
-import z3roco01.techedout.blockentity.machines.AlloySmelterBlockEntity
+import z3roco01.techedout.blockentity.machines.ElectrolyzerBlockEntity
 
 /**
  * The block which you can perform electrolysis in
  */
 class ElectrolyzerBlock(tier: Tier): MachineBlock(tier){
-    override fun createBlockEntity(pos: BlockPos, state: BlockState) = AlloySmelterBlockEntity(pos, state, tier)
+    override fun createBlockEntity(pos: BlockPos, state: BlockState) = ElectrolyzerBlockEntity(pos, state, tier)
 
     override fun <T : BlockEntity> getTicker(world: World, state: BlockState, type: BlockEntityType<T?>) =
-        checkType(type, TechedOutBlockEntities.ALLOY_SMELTER, EnergyStorageBlockEntity::staticTick)
+        checkType(type, TechedOutBlockEntities.ELECTROLYZER, EnergyStorageBlockEntity::staticTick)
 }

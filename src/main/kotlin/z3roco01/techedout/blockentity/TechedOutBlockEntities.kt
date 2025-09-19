@@ -30,8 +30,8 @@ object TechedOutBlockEntities {
         ::AlloySmelterBlockEntity, TechedOutBlocks.LOW_ALLOY_SMELTER, TechedOutBlocks.MIDDLE_ALLOY_SMELTER,
         TechedOutBlocks.HIGH_ALLOY_SMELTER).build())
     val ELECTROLYZER = registerEnergyStorage("electrolyser", FabricBlockEntityTypeBuilder.create(
-        ::ElectrolyzerBlockEntity, TechedOutBlocks.HIGH_ELECTROLYZER
-    ).build())
+        ::ElectrolyzerBlockEntity, TechedOutBlocks.HIGH_ELECTROLYZER, TechedOutBlocks.VERY_HIGH_ELECTROLYZER,
+        TechedOutBlocks.ULTRA_HIGH_ELECTROLYZER).build())
 
 
         /**

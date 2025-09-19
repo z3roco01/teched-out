@@ -9,5 +9,6 @@ object TechedOutScreens {
     fun reigster() {
         HandledScreens.register(TechedOutScreenHandlers.BATTERY_TYPE, ::BatteryScreen)
         HandledScreens.register(TechedOutScreenHandlers.ALLOY_SMELTER, ::AlloySmelterScreen)
+        HandledScreens.register(TechedOutScreenHandlers.ELECTROLYZER, ::ElectrolyzerScreen)
     }
 }
