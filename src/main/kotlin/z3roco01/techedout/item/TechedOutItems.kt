@@ -17,8 +17,13 @@ object TechedOutItems {
     val WHITE_GOLD_INGOT  = register("white_gold_ingot", Item(Item.Settings()))
     val WHITE_GOLD_NUGGET = register("white_gold_nugget", Item(Item.Settings()))
     // extra metals
-    val SILVER_INGOT  = register("silver_gold_ingot", Item(Item.Settings()))
-    val SILVER_NUGGET = register("silver_gold_nugget", Item(Item.Settings()))
+    val SILVER_INGOT  = register("silver_ingot", Item(Item.Settings()))
+    val SILVER_NUGGET = register("silver_nugget", Item(Item.Settings()))
+    val SILVER_DUST   = register("silver_dust", Item(Item.Settings()))
+    // dusts for vanilla ores
+    val COPPER_DUST   = register("copper_dust", Item(Item.Settings()))
+    val IRON_DUST   = register("iron_dust", Item(Item.Settings()))
+    val GOLD_DUST   = register("gold_dust", Item(Item.Settings()))
 
     /**
      * Dummy function to ensure everything is loaded in time
