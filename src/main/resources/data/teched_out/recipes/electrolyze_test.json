@@ -1,4 +1,5 @@
 {
+  "type": "teched_out:electrolyze",
   "inputs": [
     {
       "ingredient": {
@@ -9,12 +10,12 @@
   ],
   "outputs": [
     {
-      "item": "minecraft:snow_ball",
+      "item": "minecraft:snowball",
       "count": 5
     },
     {
       "item": "minecraft:red_dye",
-      "count": 41
+      "count": 12
     }
   ],
   "electrolyze_time": 20,

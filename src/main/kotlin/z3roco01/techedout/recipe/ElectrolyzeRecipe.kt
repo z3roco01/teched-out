@@ -3,6 +3,7 @@ package z3roco01.techedout.recipe
 import com.google.gson.JsonObject
 import net.minecraft.inventory.SimpleInventory
 import net.minecraft.item.ItemStack
+import net.minecraft.item.Items
 import net.minecraft.network.PacketByteBuf
 import net.minecraft.recipe.Recipe
 import net.minecraft.recipe.RecipeSerializer
@@ -49,12 +50,12 @@ class ElectrolyzeRecipe(val inputs: List<CountedIngredient>, val outputs: List<I
         if(world.isClient) return false
 
         // use findIngredient function, if it doesnt find one return false, since that item does not exist in the recipe
-        for(ingredient in ingredients) {
-            if(ingredient.isEmpty()) continue // if it is empty then it does not matter
+        for(input in inputs) {
+            if(input.isEmpty()) continue // if it is empty then it does not matter
 
             for(idx in 0..<2) {
                 // if there is one that matches, break to the next ingredient
-                if(ingredient.test(inventory.getStack(idx))) {
+                if(input.test(inventory.getStack(idx))) {
                     break
                 }
 
@@ -93,7 +94,7 @@ class ElectrolyzeRecipe(val inputs: List<CountedIngredient>, val outputs: List<I
             val inputs = DefaultedList.ofSize(2, CountedIngredient.EMPTY)
             // loop over each element and add it to the list, with a max of 2 inputs
             for(i in 0..<min(inputsArr.size(), 2))
-                inputs.add(CountedIngredient.fromJson(inputsArr[i].asJsonObject))
+                inputs[i] = CountedIngredient.fromJson(inputsArr[i].asJsonObject)
 
             // do a similar process for outputs, but max it at 4
             val outputsArr = json["outputs"].asJsonArray
@@ -101,7 +102,7 @@ class ElectrolyzeRecipe(val inputs: List<CountedIngredient>, val outputs: List<I
             val outputs = DefaultedList.ofSize(4, ItemStack.EMPTY)
             // loop over each element and add it to the list, with a max of 2 outputs
             for(i in 0..<min(outputsArr.size(), 4))
-                outputs.add(ShapedRecipe.outputFromJson(outputsArr[i].asJsonObject))
+                outputs[i] = ShapedRecipe.outputFromJson(outputsArr[i].asJsonObject)
 
             // then parse the time and energy
             val electrolyzeTime = json["electrolyze_time"].asInt

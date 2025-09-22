@@ -14,3 +14,4 @@ A Minecraft Fabric large tech mod for 1.20.1
 - electrolysis on copper ore to get copper and some silver ( real )
 - green gold ( electrum ) silver x gold alloy
 - white gold thru plating with silver
+- ores can be ground, making operations ( like electrolysis and smelting ) more efficient
