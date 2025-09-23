@@ -1,0 +1,23 @@
+{
+  "type": "teched_out:electrolyze",
+  "inputs": [
+    {
+      "ingredient": {
+        "tag": "c:dusts/gold_ore"
+      },
+      "count": 1
+    }
+  ],
+  "outputs": [
+    {
+      "item": "teched_out:gold_dust",
+      "count": 2
+    },
+    {
+      "item": "teched_out:silver_small_dust",
+      "count": 3
+    }
+  ],
+  "electrolyze_time": 140,
+  "energy_cost": 1600
+}
