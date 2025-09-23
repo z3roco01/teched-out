@@ -23,10 +23,9 @@ object TechedOutBlocks {
 
     val COPPER_CABLE = register(CableBlock(Tier.LOW), "copper_cable", true)
     val GOLD_CABLE   = register(CableBlock(Tier.MIDDLE), "gold_cable", true)
-    // TODO: name them after their material instead
-    val HIGH_CABLE = register(CableBlock(Tier.HIGH), "high_cable", true)
-    val VERY_HIGH_CABLE = register(CableBlock(Tier.VERY_HIGH), "very_high_cable", true)
-    val ULTRA_HIGH_CABLE = register(CableBlock(Tier.ULTRA_HIGH), "ultra_high_cable", true)
+    val RED_GOLD_CABLE = register(CableBlock(Tier.HIGH), "red_gold_cable", true)
+    val GREEN_GOLD_CABLE = register(CableBlock(Tier.VERY_HIGH), "green_gold_cable", true)
+    val WHITE_GOLD_CABLE = register(CableBlock(Tier.ULTRA_HIGH), "white_gold_cable", true)
 
     val LOW_ALLOY_SMELTER    = register(AlloySmelterBlock(Tier.LOW), "low_alloy_smelter", true)
     val MIDDLE_ALLOY_SMELTER = register(AlloySmelterBlock(Tier.MIDDLE), "middle_alloy_smelter", true)

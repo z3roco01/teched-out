@@ -25,7 +25,7 @@ object TechedOutBlockEntities {
             TechedOutBlocks.ULTRA_HIGH_BATTERY).build())
     val CABLE = TechedOutBlockEntities.registerEnergyStorage("cable", FabricBlockEntityTypeBuilder
         .create(::CableBlockEntity, TechedOutBlocks.COPPER_CABLE, TechedOutBlocks.GOLD_CABLE,
-                TechedOutBlocks.HIGH_CABLE, TechedOutBlocks.VERY_HIGH_CABLE, TechedOutBlocks.ULTRA_HIGH_CABLE).build())
+                TechedOutBlocks.RED_GOLD_CABLE, TechedOutBlocks.GREEN_GOLD_CABLE, TechedOutBlocks.WHITE_GOLD_CABLE).build())
     val ALLOY_SMELTER = registerEnergyStorage("alloy_smelter", FabricBlockEntityTypeBuilder.create(
         ::AlloySmelterBlockEntity, TechedOutBlocks.LOW_ALLOY_SMELTER, TechedOutBlocks.MIDDLE_ALLOY_SMELTER,
         TechedOutBlocks.HIGH_ALLOY_SMELTER).build())

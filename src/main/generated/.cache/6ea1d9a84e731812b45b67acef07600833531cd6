@@ -1,4 +1,4 @@
-// 1.20.1	2025-09-23T09:54:25.5869299	Teched Out/Model Definitions
+// 1.20.1	2025-09-23T10:50:34.1950305	Teched Out/Model Definitions
 46fd62ec51c55aacd716f7919d84e8533ea6fd70 assets\teched_out\models\item\gold_dust.json
 912e7e13ca8a250d55dccdd1d0ff83a459e8bddc assets\teched_out\models\item\silver_dust.json
 0ceaec352749f8dab4d9ae738d2439f3dcee6ac0 assets\teched_out\models\item\green_gold_small_dust.json
@@ -15,7 +15,6 @@ b9e380f361a4a7aa5b8f98cfa09ac81b1fd050f9 assets\teched_out\models\item\green_gol
 28eee83aeb7ecb676afcaecefc62df647f15eac0 assets\teched_out\models\item\green_gold_ingot.json
 bac99195f4ed4639f441e79927c01ec7921a60f3 assets\teched_out\models\item\copper_small_dust.json
 dd90a9bacd3cfc8b8064fad235e30fbaeeaeb3c0 assets\teched_out\models\item\copper_dust.json
-23390d14983ebade0f40b91283e496ac18445ba9 assets\teched_out\models\item\coal_ore_dust.json
 a306fbbf1f079a053bcca2530c6db6d5ad4cd454 assets\teched_out\models\item\silver_nugget.json
 389934f83c16f94b5fd07b7fef0aada069833aa7 assets\teched_out\models\item\red_gold_ingot.json
 118ec9790cb7323c0a9bbcd4807234cc89e45c1e assets\teched_out\models\item\white_gold_nugget.json
