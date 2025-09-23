@@ -3,7 +3,7 @@
   "inputs": [
     {
       "ingredient": {
-        "item": "teched_out:copper_dust"
+        "tag": "c:dusts/copper"
       },
       "count": 1
     }
