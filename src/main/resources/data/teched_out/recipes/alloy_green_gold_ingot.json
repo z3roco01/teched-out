@@ -1,0 +1,29 @@
+{
+  "type": "teched_out:alloying",
+  "ingredients": [
+    {
+      "ingredient": {
+        "tag": "c:ingots/copper"
+      },
+      "count": 1
+    },
+    {
+      "ingredient": {
+        "tag": "c:ingots/gold"
+      },
+      "count": 2
+    },
+    {
+      "ingredient": {
+        "tag": "c:ingots/silver"
+      },
+      "count": 1
+    }
+  ],
+  "output": {
+    "item": "teched_out:green_gold_ingot",
+    "count": 4
+  },
+  "alloy_time": 100,
+  "energy_cost": 800
+}
