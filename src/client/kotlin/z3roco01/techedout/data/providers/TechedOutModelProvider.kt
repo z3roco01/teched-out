@@ -42,7 +42,6 @@ class TechedOutModelProvider(output: FabricDataOutput): FabricModelProvider(outp
         items.register(TechedOutItems.IRON_SMALL_DUST, Models.GENERATED)
         items.register(TechedOutItems.GOLD_SMALL_DUST, Models.GENERATED)
 
-        items.register(TechedOutItems.COAL_ORE_DUST, Models.GENERATED)
         items.register(TechedOutItems.COPPER_ORE_DUST, Models.GENERATED)
         items.register(TechedOutItems.IRON_ORE_DUST, Models.GENERATED)
         items.register(TechedOutItems.GOLD_ORE_DUST, Models.GENERATED)

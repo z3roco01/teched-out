@@ -40,7 +40,6 @@ object TechedOutItems {
     val IRON_SMALL_DUST   = register("iron_small_dust", Item(Item.Settings()))
     val GOLD_SMALL_DUST   = register("gold_small_dust", Item(Item.Settings()))
     // ore dusts for better rates and refining
-    val COAL_ORE_DUST   = register("coal_ore_dust", Item(Item.Settings()))
     val COPPER_ORE_DUST = register("copper_ore_dust", Item(Item.Settings()))
     val IRON_ORE_DUST   = register("iron_ore_dust", Item(Item.Settings()))
     val GOLD_ORE_DUST   = register("gold_ore_dust", Item(Item.Settings()))
