@@ -3,21 +3,21 @@
   "inputs": [
     {
       "ingredient": {
-        "tag": "c:dusts/copper"
+        "tag": "c:dusts/copper_ore"
       },
       "count": 1
     }
   ],
   "outputs": [
     {
-      "item": "minecraft:snowball",
-      "count": 5
+      "item": "teched_out:copper_dust",
+      "count": 2
     },
     {
-      "item": "minecraft:red_dye",
-      "count": 12
+      "item": "teched_out:silver_small_dust",
+      "count": 2
     }
   ],
-  "electrolyze_time": 20,
-  "energy_cost": 20
+  "electrolyze_time": 100,
+  "energy_cost": 1600
 }

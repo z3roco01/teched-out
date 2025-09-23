@@ -3,13 +3,13 @@
   "ingredients": [
     {
       "ingredient": {
-        "item": "minecraft:copper_ingot"
+        "tag": "c:ingots/copper"
       },
       "count": 1
     },
     {
       "ingredient": {
-        "item": "minecraft:gold_ingot"
+        "tag": "c:ingots/gold"
       },
       "count": 3
     }

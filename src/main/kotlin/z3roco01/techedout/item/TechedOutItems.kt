@@ -20,10 +20,22 @@ object TechedOutItems {
     val SILVER_INGOT  = register("silver_ingot", Item(Item.Settings()))
     val SILVER_NUGGET = register("silver_nugget", Item(Item.Settings()))
     val SILVER_DUST   = register("silver_dust", Item(Item.Settings()))
+    val SMALL_SILVER_DUST   = register("silver_small_dust", Item(Item.Settings()))
     // dusts for vanilla ores
+    val COAL_DUST   = register("coal_dust", Item(Item.Settings()))
     val COPPER_DUST   = register("copper_dust", Item(Item.Settings()))
     val IRON_DUST   = register("iron_dust", Item(Item.Settings()))
     val GOLD_DUST   = register("gold_dust", Item(Item.Settings()))
+    // smaller dusts
+    val SMALL_COAL_DUST   = register("coal_small_dust", Item(Item.Settings()))
+    val SMALL_COPPER_DUST   = register("copper_small_dust", Item(Item.Settings()))
+    val SMALL_IRON_DUST   = register("iron_small_dust", Item(Item.Settings()))
+    val SMALL_GOLD_DUST   = register("gold_small_dust", Item(Item.Settings()))
+    // ore dusts for better rates and refining
+    val COAL_ORE_DUST   = register("coal_ore_dust", Item(Item.Settings()))
+    val COPPER_ORE_DUST   = register("copper_ore_dust", Item(Item.Settings()))
+    val IRON_ORE_DUST   = register("iron_ore_dust", Item(Item.Settings()))
+    val GOLD_ORE_DUST   = register("gold_ore_dust", Item(Item.Settings()))
 
     /**
      * Dummy function to ensure everything is loaded in time
