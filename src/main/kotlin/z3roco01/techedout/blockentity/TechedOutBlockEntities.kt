@@ -11,6 +11,7 @@ import z3roco01.techedout.block.TechedOutBlocks
 import z3roco01.techedout.blockentity.machines.AlloySmelterBlockEntity
 import z3roco01.techedout.blockentity.machines.BatteryBlockEntity
 import z3roco01.techedout.blockentity.machines.ElectrolyzerBlockEntity
+import z3roco01.techedout.blockentity.machines.MillBlockEntity
 
 
 /**
@@ -32,6 +33,9 @@ object TechedOutBlockEntities {
     val ELECTROLYZER = registerEnergyStorage("electrolyser", FabricBlockEntityTypeBuilder.create(
         ::ElectrolyzerBlockEntity, TechedOutBlocks.HIGH_ELECTROLYZER, TechedOutBlocks.VERY_HIGH_ELECTROLYZER,
         TechedOutBlocks.ULTRA_HIGH_ELECTROLYZER).build())
+    val MILL = registerEnergyStorage("mill", FabricBlockEntityTypeBuilder.create(
+        ::MillBlockEntity, TechedOutBlocks.LOW_MILL, TechedOutBlocks.MIDDLE_BATTERY, TechedOutBlocks.HIGH_MILL
+    ).build())
 
 
         /**
