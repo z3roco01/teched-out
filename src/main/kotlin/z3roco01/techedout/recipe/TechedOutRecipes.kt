@@ -16,5 +16,8 @@ object TechedOutRecipes {
 
         Registry.register(Registries.RECIPE_TYPE, ElectrolyzeRecipe.ID, ElectrolyzeRecipe.Type.INSTANCE)
         Registry.register(Registries.RECIPE_SERIALIZER, ElectrolyzeRecipe.ID, ElectrolyzeRecipe.Serializer.INSTANCE)
+
+        Registry.register(Registries.RECIPE_TYPE, MillRecipe.ID, MillRecipe.Type.INSTANCE)
+        Registry.register(Registries.RECIPE_SERIALIZER, MillRecipe.ID, MillRecipe.Serializer.INSTANCE)
     }
 }
