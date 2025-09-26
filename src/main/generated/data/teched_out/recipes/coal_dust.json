@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "teched_out:coal_small_dust"
+    },
+    {
+      "item": "teched_out:coal_small_dust"
+    },
+    {
+      "item": "teched_out:coal_small_dust"
+    },
+    {
+      "item": "teched_out:coal_small_dust"
+    }
+  ],
+  "result": {
+    "item": "teched_out:coal_dust"
+  }
+}
