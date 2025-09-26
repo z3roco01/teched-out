@@ -8,12 +8,14 @@ import net.minecraft.screen.ScreenHandlerType
 import z3roco01.techedout.TechedOut
 
 object TechedOutScreenHandlers {
-    val BATTERY_TYPE: ScreenHandlerType<BatteryScreenHandler> =
-        register("battery", ExtendedScreenHandlerType(::BatteryScreenHandler)) as ScreenHandlerType<BatteryScreenHandler>
-    val ALLOY_SMELTER: ScreenHandlerType<AlloySmelterScreenHandler> =
-        register("alloy_smelter", ExtendedScreenHandlerType(::AlloySmelterScreenHandler)) as ScreenHandlerType<AlloySmelterScreenHandler>
-    val ELECTROLYZER: ScreenHandlerType<ElectrolyzerScreenHandler> =
-        register("electrolyzer", ExtendedScreenHandlerType(::ElectrolyzerScreenHandler)) as ScreenHandlerType<ElectrolyzerScreenHandler>
+    val BATTERY_TYPE = register("battery", ExtendedScreenHandlerType(::BatteryScreenHandler))
+            as ScreenHandlerType<BatteryScreenHandler>
+    val ALLOY_SMELTER = register("alloy_smelter", ExtendedScreenHandlerType(::AlloySmelterScreenHandler))
+            as ScreenHandlerType<AlloySmelterScreenHandler>
+    val ELECTROLYZER = register("electrolyzer", ExtendedScreenHandlerType(::ElectrolyzerScreenHandler))
+            as ScreenHandlerType<ElectrolyzerScreenHandler>
+    val MILL = register("mill", ExtendedScreenHandlerType(::MillScreenHandler))
+            as ScreenHandlerType<MillScreenHandler>
 
     /**
      * Dummy function to ensure everything is loaded in time
