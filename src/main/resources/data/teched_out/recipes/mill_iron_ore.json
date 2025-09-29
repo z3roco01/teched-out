@@ -2,13 +2,13 @@
   "type": "teched_out:mill",
   "input": {
     "ingredient": {
-      "tag": "minecraft:raw_copper"
+      "tag": "minecraft:raw_iron"
     },
     "count": 1
   },
   "outputs": [
     {
-      "item": "teched_out:copper_ore_dust",
+      "item": "teched_out:iron_ore_dust",
       "count": 2
     }
   ],
