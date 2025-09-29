@@ -25,63 +25,8 @@ import kotlin.math.round
  * @param electrolyzeTime how many ticks the recipe takes
  * @param energyCost how much energy in total will be drawn
  */
-class ElectrolyzeRecipe(val inputs: List<CountedIngredient>, val outputs: List<ItemStack>, val electrolyzeTime: Int, val energyCost: Int): Recipe<SimpleInventory>{
-    /**
-     * The amount of energy that should be consumed each tick ( gets rounded to the nearest digit )
-     */
-    val energyPerTick: Int = round(energyCost.toDouble()/electrolyzeTime.toDouble()).toInt()
-
-    /**
-     * Finds the ingredient that corresponds with an item if it exists
-     */
-    fun findInput(itemStack: ItemStack): CountedIngredient? {
-        for(input in inputs) {
-            // if the item tests true with the ingredient, return it
-            if(input.testItem(itemStack))
-                return input
-        }
-
-        // if it did not find an ingredient, return null
-        return null
-    }
-
-    override fun matches(inventory: SimpleInventory, world: World): Boolean {
-        // never craft on client
-        if(world.isClient) return false
-
-        // use findIngredient function, if it doesnt find one return false, since that item does not exist in the recipe
-        for(input in inputs) {
-            if(input.isEmpty()) continue // if it is empty then it does not matter
-
-            for(idx in 0..<2) {
-                // if there is one that matches, break to the next ingredient
-                if(input.test(inventory.getStack(idx))) {
-                    break
-                }
-
-                // if it got to the end without breaking, return false since there is no match
-                if(idx == 1)
-                    return false
-            }
-        }
-
-        // if there were no problems in the loop, then return true
-        return true
-    }
-
-    /**
-     * Should not be used because of multiple outputs
-     */
-    override fun craft(inventory: SimpleInventory, registryManager: DynamicRegistryManager) = ItemStack.EMPTY
-
-    // not going to be used so it doesnt matter
-    override fun fits(width: Int, height: Int) = true
-
-    /**
-     * Should not be used, it has multiple outputs
-     */
-    override fun getOutput(registryManager: DynamicRegistryManager?) = ItemStack.EMPTY
-
+class ElectrolyzeRecipe(inputs: List<CountedIngredient>, outputs: List<ItemStack>, electrolyzeTime: Int, energyCost: Int):
+    BaseRecipe(inputs, outputs, electrolyzeTime, energyCost){
     override fun getId() = ID
     override fun getSerializer() = Serializer.INSTANCE
     override fun getType() = Type.INSTANCE
@@ -151,7 +96,7 @@ class ElectrolyzeRecipe(val inputs: List<CountedIngredient>, val outputs: List<I
                 buf.writeItemStack(output)
 
             // then write the time and energy
-            buf.writeInt(recipe.electrolyzeTime)
+            buf.writeInt(recipe.craftTime)
             buf.writeInt(recipe.energyCost)
         }
 
