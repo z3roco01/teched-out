@@ -23,60 +23,12 @@ import kotlin.math.round
  * @param alloyTime how many ticks the alloying takes
  * @param energyCost how much energy is taken
  */
-class AlloyingRecipe(val ingredients: List<CountedIngredient>, private val output: ItemStack, val alloyTime: Int, val energyCost: Int):
-    Recipe<SimpleInventory> {
-    /**
-     * The amount of energy that should be consumed each tick ( gets rounded to the nearest digit )
-     */
-    val energyPerTick: Int = round(energyCost.toDouble()/alloyTime.toDouble()).toInt()
-
-    /**
-     * Finds the ingredient that corresponds with an item if it exists
-     */
-    fun findIngredient(itemStack: ItemStack): CountedIngredient? {
-        for(ingredient in ingredients) {
-            // if the item tests true with the ingredient, return it
-            if(ingredient.testItem(itemStack))
-                return ingredient
-        }
-
-        // if it did not find an ingredient, return null
-        return null
-    }
-
-    override fun matches(inventory: SimpleInventory, world: World): Boolean {
-        // crafting should only happen server side
-        if(world.isClient) return false
-
-        // use findIngredient function, if it doesnt find one return false, since that item does not exist in the recipe
-        for(ingredient in ingredients) {
-            if(ingredient.isEmpty()) continue // if it is empty then it does not matter
-
-            for(idx in 0..<3) {
-                // if there is one that matches, break to the next ingredient
-                if(ingredient.test(inventory.getStack(idx))) {
-                    break
-                }
-
-                // if it got to the end without breaking, return false since there is no match
-                if(idx == inventory.size()-1)
-                    return false
-            }
-        }
-
-        return true
-    }
-
-    override fun craft(inventory: SimpleInventory, registryManager: DynamicRegistryManager?) = output.copy()
-
-    override fun fits(width: Int, height: Int) = true
-
-    override fun getOutput(registryManager: DynamicRegistryManager?) = output
+class AlloyingRecipe(ingredients: List<CountedIngredient>, output: ItemStack, alloyTime: Int, energyCost: Int):
+    BaseRecipe(ingredients, listOf(output), alloyTime, energyCost) {
+    override val inputSlots = 3
 
     override fun getId() = ID
-
     override fun getSerializer() = Serializer.INSTANCE
-
     override fun getType() = Type.INSTANCE
 
     class Serializer: RecipeSerializer<AlloyingRecipe> {
@@ -129,9 +81,9 @@ class AlloyingRecipe(val ingredients: List<CountedIngredient>, private val outpu
             for(ingredient in recipe.ingredients)
                 ingredient.write(buf)
             // then write the output
-            buf.writeItemStack(recipe.output)
+            buf.writeItemStack(recipe.outputs[0])
             // write the alloy time
-            buf.writeInt(recipe.alloyTime)
+            buf.writeInt(recipe.craftTime)
             // and the energy cost
             buf.writeInt(recipe.energyCost)
         }

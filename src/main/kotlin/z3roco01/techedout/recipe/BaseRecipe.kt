@@ -21,6 +21,10 @@ abstract class BaseRecipe(val inputs: List<CountedIngredient>, val outputs: List
      * The amount of energy that should be consumed each tick ( gets rounded to the nearest digit )
      */
     val energyPerTick: Int = round(energyCost.toDouble()/craftTime.toDouble()).toInt()
+    /**
+     * The count of input slots
+     */
+    abstract val inputSlots: Int
 
     override fun matches(inventory: SimpleInventory, world: World): Boolean {
         // never craft on client
@@ -30,14 +34,14 @@ abstract class BaseRecipe(val inputs: List<CountedIngredient>, val outputs: List
         for(input in inputs) {
             if(input.isEmpty()) continue // if it is empty then it does not matter
 
-            for(idx in 0..<2) {
+            for(idx in 0..<inputSlots) {
                 // if there is one that matches, break to the next ingredient
                 if(input.test(inventory.getStack(idx))) {
                     break
                 }
 
                 // if it got to the end without breaking, return false since there is no match
-                if(idx == 1)
+                if(idx == inventory.size()-1)
                     return false
             }
         }

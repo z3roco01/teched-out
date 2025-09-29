@@ -27,6 +27,8 @@ import kotlin.math.round
  */
 class ElectrolyzeRecipe(inputs: List<CountedIngredient>, outputs: List<ItemStack>, electrolyzeTime: Int, energyCost: Int):
     BaseRecipe(inputs, outputs, electrolyzeTime, energyCost){
+    override val inputSlots = 3
+
     override fun getId() = ID
     override fun getSerializer() = Serializer.INSTANCE
     override fun getType() = Type.INSTANCE
