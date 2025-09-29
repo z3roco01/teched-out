@@ -72,11 +72,26 @@ class ElectrolyzerBlockEntity(pos: BlockPos, state: BlockState, tier: Tier):
         // if there is at least one slot of each empty item, then no further checks are needed
         if(emptyOutputs() >= notEmptyInList(recipe.outputs)) return true
 
-        return false // ( temp )
+        // keep true until a uninsertable items comes by
+        var ret = true
         // loop over each output and check against each slot
         for(output in recipe.outputs) {
+            for(i in 2..5) {
+                val stack = items[i]
+                // check if the item is the same
+                ret = !(stack.item == output.item)
+                // if it is them check if there is space
+                if(ret) ret = ((stack.maxCount - stack.count) >= output.count)
 
+                // if ret is true, meaning a slot has been found, break
+                if(ret) break
+            }
+            // if ret is false then there was not a slot that it could fit in, so return false
+            if(!ret)
+                return false
         }
+        // every check has succeeded, so return true
+        return true
     }
 
     /**

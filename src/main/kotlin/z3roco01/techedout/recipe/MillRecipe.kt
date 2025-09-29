@@ -15,9 +15,15 @@ import net.minecraft.world.World
 import z3roco01.techedout.TechedOut
 import z3roco01.techedout.recipe.ingredient.CountedIngredient
 import kotlin.math.min
+import kotlin.math.round
 
 class MillRecipe(val input: CountedIngredient, val outputs: List<ItemStack>, val millTime: Int, val energyCost: Int):
     Recipe<SimpleInventory> {
+    /**
+     * The amount of energy that should be consumed each tick ( gets rounded to the nearest digit )
+     */
+    val energyPerTick: Int = round(energyCost.toDouble()/millTime.toDouble()).toInt()
+
     override fun matches(inventory: SimpleInventory, world: World) = input.test(inventory.getStack(0))
 
     /**

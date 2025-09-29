@@ -15,6 +15,6 @@ class MillScreenHandler(syncId: Int, playerInventory: PlayerInventory, blockEnti
         addSlot(Slot(blockEntity, 0, 44, 30))
         addSlot(OutputSlot(blockEntity, 1, 98, 30))
         addSlot(OutputSlot(blockEntity, 2, 116, 30))
-        addSlot(OutputSlot(blockEntity, 1,  107, 48))
+        addSlot(OutputSlot(blockEntity, 3,  107, 48))
     }
 }
